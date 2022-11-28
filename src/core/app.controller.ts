@@ -9,7 +9,7 @@ export class Ping {
     @httpGet('', TYPES.AuthGuard)
 	async ping() {
 		return {
-			app: 'Ping Beta',
+			app: 'Nanban',
 			server: 'Express JS/ Inversify JS',
 			language: 'TypeScript',
 		};

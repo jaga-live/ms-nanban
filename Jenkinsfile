@@ -7,6 +7,11 @@ pipeline {
                 sh 'docker build -t ms-nanban .'
             }
         }
+        stage('Build Docker Image') {
+            steps {
+                sh 'ls -a'
+            }
+        }
         stage('Stop Existing Container') {
             steps {
                 sh 'docker rm ms-nanban --force'

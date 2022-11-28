@@ -39,7 +39,7 @@ export class MailFactory {
 	public static welcomeMail(config: MailFactory) {
 		const { receiverName } = config.context;
 
-		const subject = 'Ping - Account Creation';
+		const subject = 'Nanban - Account Creation';
 		const data = {
 			to: config.to,
 			subject,
@@ -58,7 +58,7 @@ export class MailFactory {
 	public static sendOtp(config: MailFactory) {
 		const { otp } = config.context;
 
-		const subject = 'One Time Password - PING';
+		const subject = 'One Time Password - Nanban';
 		const data = {
 			to: config.to,
 			subject,
