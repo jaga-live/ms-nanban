@@ -14,7 +14,12 @@ pipeline {
         // }
         stage('Copy Templates & Assets') {
             steps {
-                sh 'cd ./dist && ls'
+                sh script:'''
+                #!/bin/bash
+                cd ./dist
+                ls -a
+                echo "Displaying dist"
+              '''
             }
         }
         stage('Stop Existing Container') {
