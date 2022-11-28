@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "start": "nodemon src/main.ts",
-    "copy:template": "npx copyfiles ./templates ./dist",
+    "copy:assets": "cpx ./src/shared/mail/templates/\\** ./dist/shared/mail/templates/",
     "lint": "eslint . --ext .ts",
     "lint:fix": "npm run lint -- --fix"
   },
