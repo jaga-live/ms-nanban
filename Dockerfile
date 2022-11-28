@@ -5,6 +5,6 @@ RUN npm install -g typescript
 RUN npm install --legacy-peer-deps
 COPY . .
 RUN tsc
-RUN ls
+COPY ./src/shared/mail/templates dist/shared/mail/
 CMD ["node", "./dist/main.js"]
 EXPOSE 5000

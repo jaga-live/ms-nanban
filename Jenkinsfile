@@ -7,13 +7,6 @@ pipeline {
                 sh 'docker build -t ms-nanban .'
             }
         }
-        stage('Copy Templates & Assets') {
-            steps {
-                sh "chmod +x ./scripts/copy.sh"
-                sh "./scripts/copy.sh"
-
-            }
-        }
         stage('Stop Existing Container') {
             steps {
                 sh 'docker rm ms-nanban --force'
