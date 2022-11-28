@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <title>Blood Donation Certificate</title>
+    <style>
+    /* https://stackoverflow.com/questions/3341485/how-to-make-a-html-page-in-a4-paper-size-pages#:~:text=document%20resized%20to%3A-,72%20dpi%20(web)%20%3D%20595%20X%20842%20pixels,print)%20%3D%204960%20X%207016%20pixels */
+
+* {
+    box-sizing: border-box;
+    font-family: serif, sans-serif;
+}
+
+h1 {
+    font-size: 75px;
+    font-weight: 600;
+    margin: 7px;
+}
+h2 {
+    font-size: 65px;
+    font-weight: 600;
+    margin: 7px;
+}
+h5 {
+    font-size: 50px;
+    margin: 7px;
+}
+.ordinary-text > * {
+    font-size: 40px;
+    margin: 10px 7px;
+    font-weight: 600;
+}
+
+.color-red {
+    color: #CD1E05;
+}
+
+body {
+    background-color: #FFFADC;
+    margin: 0;
+}
+
+body > .container-1 {
+    width: 37.2cm;
+    height: 26.2cm;
+    /* width: 26cm;
+    height: 18cm; */
+    border: 9px solid #CD1E05;
+    padding: 2px;
+}
+
+body > .container-1 > .container-2 {
+    width: 100%;
+    height: 100%;
+    border: 9px solid #CD1E05;
+    padding: 20px;
+}
+
+body > .container-1 > .container-2 > .container-3 {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #000000;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    position: relative;
+}
+
+body > .container-1 > .container-2 > .container-3 > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+    height: 150px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .header > .heading {
+    color: #CD1E05;
+    text-align: center;
+    position: absolute;
+    left: 430px;
+    top: 10px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .header > .nanban-logo {
+    width: 220px;
+    height: 150px;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+body > .container-1 > .container-2 > .container-3 > .header > .aveon-logo {
+    width: 160px;
+    height: 160px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .content {
+    text-align: center;
+    padding: 10px;
+    word-wrap: break-word;
+    margin-top: 80px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .content > .name {
+    margin-bottom: 10px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .red-box {
+    background-color: #CD1E05;
+    height: 25px;
+    width: 100%;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+    position: relative;
+    height: 130px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities .line {
+    height: 3px;
+    background-color: #000000c9;
+    border: 2px solid #000000c9;
+    /* margin: auto; */
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > .signature {
+    position: absolute;
+    width: 500px;
+    left: 20px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > .sponsors {
+    position: absolute;
+    width: 500px;
+    right: 20px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities .ordinary-text {
+    margin: auto;
+}
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities .ordinary-text > * {
+    text-align: center;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > .signature > .line {
+    position: absolute;
+    left: 50px;
+    width: 200px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > .sponsors > .line {
+    position: absolute;
+    right: 50px;
+    width: 400px;
+}
+    </style>
+  </head>
+  <body>
+    <body>
+      <div class="container-1">
+        <div class="container-2">
+          <div class="container-3">
+            <div class="header">
+              <img
+              src="data:image/png;base64,{{nanban_logo}}"
+                alt="nanban-logo"
+                class="nanban-logo"
+              />
+              <div class="heading">
+                <h2>Certificate of</h2>
+                <h1>Appreciation</h1>
+              </div>
+              <img
+              src="data:image/png;base64,{{aveon_logo}}"
+                alt="aveon-logo"
+                class="aveon-logo"
+              />
+            </div>
+            <div class="content">
+              <div class="name">
+                <h2>{{full_name}}</h2>
+              </div>
+              <div class="ordinary-text">
+                <p>for service rendered by organising a</p>
+              </div>
+              <div>
+                <h5 class="color-red">Nanban Blood Donation Camp</h5>
+              </div>
+              <div class="ordinary-text">
+                <p>
+                  held on {{completed_date}} Venue: {{hospital_name}}
+                </p>
+              </div>
+              <div class="ordinary-text">
+                <p>wherein {{required_units}} units have been mobilised</p>
+              </div>
+            </div>
+            <div class="footer">
+              <div class="authorities">
+                <div class="signature">
+                  <div class="ordinary-text">
+                    <p style="margin-bottom: 1px">__________________</p>
+                    <p>Signature</p>
+                  </div>
+                </div>
+                <div class="sponsors">
+                  <div class="ordinary-text">
+                    <p style="margin-bottom: 1px">___________________</p>
+                    <p>Sponsers</p>
+                  </div>
+                </div>
+              </div>
+              <div class="red-box"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

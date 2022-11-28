@@ -1,0 +1,121 @@
+/* https://stackoverflow.com/questions/3341485/how-to-make-a-html-page-in-a4-paper-size-pages#:~:text=document%20resized%20to%3A-,72%20dpi%20(web)%20%3D%20595%20X%20842%20pixels,print)%20%3D%204960%20X%207016%20pixels */
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 65px;
+    font-weight: 600;
+    margin: 3px;
+}
+h2 {
+    font-size: 45px;
+    font-weight: 600;
+    margin: 3px;
+}
+h5 {
+    font-size: 30px;
+    margin: 3px;
+}
+.ordinary-line > * {
+    font-size: 25px;
+    margin: 10px 3px;
+    font-weight: 600;
+}
+
+.color-red {
+    color: #CD1E05;
+}
+
+body {
+    background-color: #FFFADC;
+    margin: 0;
+}
+
+body > .container-1 {
+    /* width: 29.7cm;
+    height: 21.0cm; */
+    width: 26cm;
+    height: 18cm;
+    border: 9px solid #CD1E05;
+    padding: 2px;
+}
+
+body > .container-1 > .container-2 {
+    width: 100%;
+    height: 100%;
+    border: 9px solid #CD1E05;
+    padding: 20px;
+}
+
+body > .container-1 > .container-2 > .container-3 {
+    width: 100%;
+    height: 100%;
+    border: 5px solid #000000;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .header > .heading {
+    color: #CD1E05;
+    text-align: center;
+}
+
+body > .container-1 > .container-2 > .container-3 > .header > .nanban-logo {
+    width: 120px;
+    height: 80px;
+}
+body > .container-1 > .container-2 > .container-3 > .header > .aveon-logo {
+    width: 100px;
+    height: 100px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .content {
+    text-align: center;
+    padding: 10px;
+    word-wrap: break-word;
+}
+
+body > .container-1 > .container-2 > .container-3 > .content > .name {
+    margin-bottom: 10px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .red-box {
+    background-color: #CD1E05;
+    height: 25px;
+    width: 100%;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    padding: 10px;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities .line {
+    height: 2px;
+    background-color: #000000c9;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > .signature > .line {
+    width: 70%;
+}
+
+body > .container-1 > .container-2 > .container-3 > .footer > .authorities > .sponsors > .line {
+    width: 80%;
+}
