@@ -15,6 +15,8 @@ pipeline {
         stage('Copy Templates & Assets') {
             steps {
                 sh "chmod +x ./scripts/copy.sh"
+                sh "./scripts/copy.sh"
+
             }
         }
         stage('Stop Existing Container') {
