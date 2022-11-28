@@ -2,9 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage('Build Docker Image') {
+        stage('Build ms-nanban') {
             steps {
                 sh 'docker build -t ms-nanban .'
+            }
+        }
+        stage('Run unit tests') {
+            steps {
+                sh 'docker run ms-nanban npm run test'
             }
         }
         stage('Stop Existing Container') {
