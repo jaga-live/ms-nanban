@@ -7,7 +7,7 @@ pipeline {
                 sh 'docker build -t ms-nanban .'
             }
         }
-        stage('Build Docker Image') {
+        stage('Copy Templates & Assets') {
             steps {
                 sh 'ls -a'
             }
