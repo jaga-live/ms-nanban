@@ -1,4 +1,3 @@
 #!/bin/bash
-cd ./dist
-ls -a
-echo "Displaying dist"
+echo "Copying Templates and Assets into Dist"
+cp -a ./src/shared/mail/templates/ ./dist/shared/mail/

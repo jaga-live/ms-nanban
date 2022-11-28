@@ -7,11 +7,6 @@ pipeline {
                 sh 'docker build -t ms-nanban .'
             }
         }
-        // stage('Copy Templates & Assets') {
-        //     steps {
-        //         sh 'cp -a ./src/shared/mail/templates/ ./dist/shared/mail/'
-        //     }
-        // }
         stage('Copy Templates & Assets') {
             steps {
                 sh "chmod +x ./scripts/copy.sh"
