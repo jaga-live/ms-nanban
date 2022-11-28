@@ -9,7 +9,7 @@ pipeline {
         }
         stage('Copy Templates & Assets') {
             steps {
-                sh 'ls -a'
+                sh 'cp -a ./src/shared/mail/templates/ ./dist/shared/mail/'
             }
         }
         stage('Stop Existing Container') {
