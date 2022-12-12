@@ -26,4 +26,7 @@ export class Hospital {
 
     @Column({ default: v4() })
     	qrId: string;
+    
+    @Column()
+    	approvalStatus: string;
 }

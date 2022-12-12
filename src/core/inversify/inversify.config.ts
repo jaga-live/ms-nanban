@@ -25,6 +25,8 @@ import { MailFactory } from '../../shared/mail/factory/mail.factory';
 import { BloodService, IBloodService } from '../../api/blood/service/blood.service';
 import { BloodRepository } from '../../api/blood/repository/blood.repository';
 import { FileService } from '../../shared/file/file.service';
+import { BloodBankRepository } from '../../api/blood_bank/repository/blood_bank.repository';
+import { BloodBankService, IBloodBankService } from '../../api/blood_bank/service/blood_bank.service';
 
 export const container = new Container({
 	defaultScope: 'Singleton',
@@ -46,6 +48,7 @@ container.bind<IBloodRequestService>(TYPES.BloodRequestService).to(BloodRequestS
 container.bind<IHospitalService>(TYPES.HospitalService).to(HospitalService);
 container.bind<IDonorStatusService>(TYPES.DonorStatusService).to(DonorStatusService);
 container.bind<IBloodService>(TYPES.BloodService).to(BloodService);
+container.bind<IBloodBankService>(TYPES.BloodBankService).to(BloodBankService);
 container.bind<FileService>(TYPES.FileService).to(FileService);
 /// /Repository Service
 container.bind<Repository>(TYPES.RepoService).to(Repository);
@@ -58,3 +61,4 @@ container.bind(BloodRequestRepository).toSelf();
 container.bind(HospitalRepository).toSelf();
 container.bind(DonorStatusRepository).toSelf();
 container.bind(BloodRepository).toSelf();
+container.bind(BloodBankRepository).toSelf();

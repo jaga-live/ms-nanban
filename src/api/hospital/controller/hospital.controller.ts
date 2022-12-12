@@ -16,7 +16,7 @@ export class HospitalController {
         @inject(TYPES.HospitalService) private readonly hospitalService: IHospitalService,
 	) { }
 
-    /// Add Single Hospital
+    /// Add Single Hospital from Admin
     @httpPost(
     	'',
     	TYPES.AuthGuard,
@@ -28,6 +28,13 @@ export class HospitalController {
 		const payload = await CreateHospitalDto.validate(req.body);
 		return this.hospitalService.create_hospital(payload);
 	}
+    
+    ///Public Hospital Register
+    @httpPost('/register')
+    async registerHospital(req: Request) {
+    	const payload = await CreateHospitalDto.validate(req.body);
+    	return this.hospitalService.register_hospital(payload);
+    }
 
     /// Add Multiple Hospital
     @httpPost(

@@ -3,7 +3,7 @@ import Joi from 'joi';
 import { ValidationException } from '../../../core/exception';
 
 @injectable()
-export class CreateHospitalDto {
+export class CreateBloodBankDto {
 	constructor(
         public name: string,
         public address: string,
@@ -12,11 +12,11 @@ export class CreateHospitalDto {
 		public approvalStatus: string,
 	) { }
 
-	public static async validate(dto: CreateHospitalDto) {
+	public static async validate(dto: CreateBloodBankDto) {
 		if (!dto) throw new ValidationException();
 
 		const schema = Joi.object({
-			hospital_name: Joi.string().required(),
+			blood_bank_name: Joi.string().required(),
 			address_line_1: Joi.string().required(),
 			address_line_2: Joi.string().required(),
 			pin: Joi.number().required(),
@@ -32,7 +32,7 @@ export class CreateHospitalDto {
 }
 
 /// Edit DTO
-export class EditHospitalDto {
+export class EditBloodBankDto {
 	constructor(
         public hospital_name?: string,
         public address?: string,
@@ -42,7 +42,7 @@ export class EditHospitalDto {
         public id?: string,
 	) { }
 
-	public static async validate(dto: EditHospitalDto) {
+	public static async validate(dto: EditBloodBankDto) {
 		if (!dto) throw new ValidationException();
 		delete dto.qrId;
 		delete dto.id;

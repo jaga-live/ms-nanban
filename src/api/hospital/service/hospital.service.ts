@@ -6,6 +6,7 @@ import { CreateHospitalDto, EditHospitalDto } from '../_dto/hospital.dto';
 
 export interface IHospitalService{
     create_hospital(payload: Hospital): Promise<Hospital>
+    register_hospital(payload: Hospital): Promise<Hospital>
     create_multiple_hospital(payload: Hospital[])
     view_all_hospital(): Promise<Hospital[]>
     view_single_hospital(id: number): Promise<Hospital>
@@ -21,6 +22,13 @@ export class HospitalService implements IHospitalService {
 
 	/// Create Hospital
 	async create_hospital(payload: Hospital): Promise<Hospital> {
+		payload.approvalStatus = 'accepted';
+		return this.hospitalRepo.create(payload);
+	}
+
+	///Register Hospital
+	async register_hospital(payload: Hospital): Promise<Hospital> {
+		payload.approvalStatus = 'pending';
 		return this.hospitalRepo.create(payload);
 	}
 

@@ -8,6 +8,7 @@ export const TYPES = {
 	DonorStatusService: Symbol('DonorStatusService'),
 	HospitalService: Symbol('HospitalService'),
 	BloodService: Symbol('BloodService'),
+	BloodBankService: Symbol('BloodBankService'),
 	MailService: Symbol('MailService'),
 	SmsService: Symbol('SmsService'),
 	FileService: Symbol('FileService'),
