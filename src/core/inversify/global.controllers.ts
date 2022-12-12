@@ -9,3 +9,4 @@ import '../../api/donor_status/controller/donor_status.controller';
 import '../../api/common/common.controller';
 import '../../api/blood/controller/blood.controller';
 import '../../api/blood_bank/controller/blood_bank.controller';
+import '../../api/blood_camp/controller/blood_camp.controller';

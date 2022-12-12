@@ -27,6 +27,8 @@ import { BloodRepository } from '../../api/blood/repository/blood.repository';
 import { FileService } from '../../shared/file/file.service';
 import { BloodBankRepository } from '../../api/blood_bank/repository/blood_bank.repository';
 import { BloodBankService, IBloodBankService } from '../../api/blood_bank/service/blood_bank.service';
+import { BloodCampService, IBloodCampService } from '../../api/blood_camp/service/blood_camp.service';
+import { BloodCampRepository } from '../../api/blood_camp/repository/blood_camp.repo';
 
 export const container = new Container({
 	defaultScope: 'Singleton',
@@ -49,6 +51,7 @@ container.bind<IHospitalService>(TYPES.HospitalService).to(HospitalService);
 container.bind<IDonorStatusService>(TYPES.DonorStatusService).to(DonorStatusService);
 container.bind<IBloodService>(TYPES.BloodService).to(BloodService);
 container.bind<IBloodBankService>(TYPES.BloodBankService).to(BloodBankService);
+container.bind<IBloodCampService>(TYPES.BloodCampService).to(BloodCampService);
 container.bind<FileService>(TYPES.FileService).to(FileService);
 /// /Repository Service
 container.bind<Repository>(TYPES.RepoService).to(Repository);
@@ -62,3 +65,4 @@ container.bind(HospitalRepository).toSelf();
 container.bind(DonorStatusRepository).toSelf();
 container.bind(BloodRepository).toSelf();
 container.bind(BloodBankRepository).toSelf();
+container.bind(BloodCampRepository).toSelf();

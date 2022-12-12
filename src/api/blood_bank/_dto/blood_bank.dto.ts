@@ -34,21 +34,18 @@ export class CreateBloodBankDto {
 /// Edit DTO
 export class EditBloodBankDto {
 	constructor(
-        public hospital_name?: string,
+        public name?: string,
         public address?: string,
         public pin?: string,
-        public state?: string,
-        public qrId?: string,
-        public id?: string,
+		public state?: string,
+		public approvalStatus?: string,
 	) { }
 
 	public static async validate(dto: EditBloodBankDto) {
 		if (!dto) throw new ValidationException();
-		delete dto.qrId;
-		delete dto.id;
 
 		const schema = Joi.object({
-			hospital_name: Joi.string(),
+			blood_bank_name: Joi.string(),
 			address_line_1: Joi.string(),
 			address_line_2: Joi.string(),
 			pin: Joi.number(),

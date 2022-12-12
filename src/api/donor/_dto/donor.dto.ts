@@ -27,7 +27,6 @@ export class CreateDonorDto {
 			address_line_1: Joi.string().required(),
 			address_line_2: Joi.string().required(),
 			city: Joi.string().required(),
-			state: Joi.string().required(),
 			pin: Joi.number().required(),
 			mobile_number: Joi.number().required(),
 			email: Joi.string().required().email(),

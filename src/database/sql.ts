@@ -10,9 +10,10 @@ import { Hospital } from '../api/hospital/model/hospital.model';
 import { DonorStatus } from '../api/donor_status/model/donor_status.model';
 import { Blood } from '../api/blood/model/blood.model';
 import { BloodBank } from '../api/blood_bank/model/blood_bank.model';
+import { BloodCamp } from '../api/blood_camp/model/blood_camp.model';
 
 const Entities = [
-	User, Auth, AuthSession, Blood, BloodBank, Donor, BloodRequest, Hospital, DonorStatus, ExpoPushToken,
+	User, Auth, AuthSession, Blood, BloodBank, Donor, BloodRequest, Hospital, DonorStatus, BloodCamp, ExpoPushToken,
 ];
 
 const AppDataSource = new DataSource({
@@ -89,6 +90,12 @@ export class Repository {
 	// blood bank
 	public blood_bank() {
 		const bloodRepo = AppDataSource.getRepository(BloodBank);
+		return bloodRepo;
+	}
+
+	// blood bank
+	public blood_camp() {
+		const bloodRepo = AppDataSource.getRepository(BloodCamp);
 		return bloodRepo;
 	}
 
