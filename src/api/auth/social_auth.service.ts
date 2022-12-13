@@ -8,7 +8,7 @@ import { TYPES } from '../../core/inversify/types';
 import { UserService } from '../users/service/users.service';
 import { AuthService } from './auth.service';
 import { SocialAuthDto } from './_dto/auth.dto';
-
+import axios from 'axios';
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 @injectable()
@@ -21,16 +21,13 @@ export class SocialAuthService {
 	async google_auth(payload: SocialAuthDto) {
 		const { token } = payload;
 		const authService = container.get<AuthService>(TYPES.AuthService);
-
-		let resPayload: any;
-		await client.verifyIdToken({ idToken: token, audience: process.env.GOOGLE_CLIENT_ID })
-			.then((res) => { resPayload = { ...res }; })
-			.catch((err) => {
-				console.log(err);
-				throw new HttpException('Google Auth Failed', 401);
-			});
-
-		const { email_verified, email, name } = resPayload.payload;
+		
+		const googleVerifyToken = await axios.get(`https://oauth2.googleapis.com/tokeninfo?id_token=${token}}`).catch(err => {
+			throw new HttpException('Google Auth Failed', 400);
+		});
+		if (!googleVerifyToken?.data) throw new HttpException('Google Auth Failed', 400);
+		
+		const { email_verified, email, name } = googleVerifyToken.data;
 
 		if (email_verified) {
 			const user = await this.userService.viewUserByEmail(email);
