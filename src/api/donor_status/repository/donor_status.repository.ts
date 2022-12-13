@@ -5,10 +5,15 @@ import { HttpException } from '../../../core/exception';
 import { TYPES } from '../../../core/inversify/types';
 import { Repository } from '../../../database/sql';
 import { DonorStatus } from '../model/donor_status.model';
+import { DonorService } from '../../donor/service/donor.service';
+import { DonorRepository } from '../../donor/repository/donor.repository';
 
 @injectable()
 export class DonorStatusRepository {
-	constructor(@inject(TYPES.RepoService) private readonly repo : Repository) { }
+	constructor(
+		@inject(TYPES.RepoService) private readonly repo: Repository,
+		@inject(DonorRepository) private readonly donorRepo: DonorRepository,
+	) { }
 
 	// save donor status
 	async saveDonorStatus(payload: any) {
@@ -45,6 +50,19 @@ export class DonorStatusRepository {
 		return donorStatusByBloodReqId;
 	}
 
+	///View all Blood request based
+	async get_blood_request_by_status(userId: number, status: string): Promise<any> {
+		const donor = await this.donorRepo.find_donor_by_id(userId);
+		if (!donor) throw new HttpException('Donor not found', 400);
+		const { id } = donor;
+		return await this.repo.donor()
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.status, s.donor_id
+                                        FROM blood_request r
+                                        JOIN donor_status s
+                                        ON r.id = s.blood_request_id
+                                        WHERE s.status= '${status}' AND s.donor_id = ${id};`);
+	}
+
 	// delete donor status by id
 	async delete_donor_status_by_donor_id(donor_id: number) {
 		const deleteDonorStatusById = await this.find_donor_status_by_donor_id(donor_id);
@@ -54,17 +72,16 @@ export class DonorStatusRepository {
 		return deleteDonorStatusById;
 	}
 
+
 	// accept or reject blood request
-	async accept_or_reject_blood_request(blood_request_id: number, donor_id: number, status: boolean): Promise<any> {
-		const update_donor_status = await this.repo.donor_status()
+	async update_donor_status(blood_request_id: number, donor_id: number, status: string): Promise<any> {
+		await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()
-			.set({ status: status ? 'ACCEPTED' : 'REJECTED' })
+			.set({ status })
 			.where('donor_id = :donor_id', { donor_id })
 			.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
 			.execute();
-
-		return 'updated';
 	}
 
 	// complete the flow

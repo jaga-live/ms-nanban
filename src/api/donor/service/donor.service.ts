@@ -38,58 +38,44 @@ export class DonorService implements IDonorService {
 		return saveDonor;
 	}
 
+	////GET
 	// view all donor
 	async viewDonors() {
 		const donors = await this.donor.find_all_donor();
 		return donors;
 	}
-
+	
 	// view donor by id
 	async viewDonor(id : number) {
 		const donor = await this.donor.find_donor_by_id(id);
 		return donor;
 	}
-
+	
 	/// view donor by userId
 	async viewDonorByUser(userId: number) {
 		const donor = await this.donor.find_donor_by_userId(userId);
 		return donor;
 	}
+	
+	// push tokens by donor id
+	async get_donor_expo_push_tokens_by_id(id: number): Promise<any> {
+		return await this.donor.get_donor_expo_push_tokens_by_id(id);
+	}
 
+
+	///PATCH
 	// edit donor by id
 	async editDonorById(id : number) {
 		const donor = await this.donor.update_donor_by_id(id);
 		return donor;
 	}
 
+	///DELETE
 	// delete donor by id
 	async deleteDonor(id: number) {
 		const donor = await this.donor.delete_donor_by_id(id);
 		return donor;
 	}
 
-	// push tokens by donor id
-	async get_donor_expo_push_tokens_by_id(id: number): Promise<any> {
-		return await this.donor.get_donor_expo_push_tokens_by_id(id);
-	}
 
-	// view all blood requests
-	async view_blood_request_by_action(userId: number, status: string) {
-		return await this.donor.get_blood_request_by_status(userId, status);
-	}
-
-	// list accepted donation list for donor
-	async list_accepted_donation(userId: number): Promise<any> {
-		return await this.donor.list_accepted_donation(userId);
-	}
-
-	// list rejected donation list for donor
-	async list_rejected_donation(id: number): Promise<any> {
-		return await this.donor.list_rejected_donation(id);
-	}
-
-	// list successful donation list for donor
-	async list_sucessful_donation(id: number): Promise<any> {
-		return await this.donor.list_successful_donation(id);
-	}
 }

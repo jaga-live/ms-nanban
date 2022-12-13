@@ -30,12 +30,14 @@ export class DonorStatusService implements IDonorStatusService {
         @inject(TYPES.MailService) private readonly mailService: MailService,
 	) {}
 
-	// save donorstatus
+	///Create
+	// Save donor status
 	async saveDonorStatus(payload: any) {
 		const saveDonorStatus = await this.donorStatusRepo.saveDonorStatus(payload);
 		return saveDonorStatus;
 	}
 
+	///GET
 	// view all donor status
 	async viewAllDonorStatus() {
 		const viewAllDonorStatus = await this.donorStatusRepo.find_all_donor_status();
@@ -54,61 +56,67 @@ export class DonorStatusService implements IDonorStatusService {
 		return viewDonorStatusByDonorId;
 	}
 
-	// delete donor status by id
-	async deleteDonoeStatusById(id) {
-		const deleteDonorStatusById = await this.donorStatusRepo.delete_donor_status_by_donor_id(id);
-		return deleteDonorStatusById;
+	// view all blood requests
+	async view_blood_request_by_action(userId: number, status: string) {
+		return await this.donorStatusRepo.get_blood_request_by_status(userId, status);
 	}
 
-	// accept or reject blood request
-	async accept_or_reject_blood_request(blood_request_id: number, donor_id: number, status: boolean): Promise<any> {
-		const donor = await this.donorRepo.find_donor_by_id(donor_id);
-		if (!donor) throw new HttpException('Donor Id not found', 400);
+	/// Update Donor Status
+	async update_donor_status(userId: number, blood_request_id: number, status: string) {
+		const donor = await this.donorRepo.find_donor_by_userId(userId);
+		if (!donor) throw new HttpException('Donor not found', 400);
 
 		const bloodReq = await this.donorStatusRepo.find_donor_status_by_blood_request_id(blood_request_id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
 
-		return this.donorStatusRepo.accept_or_reject_blood_request(blood_request_id, donor_id, status);
-	}
+		return this.donorStatusRepo.update_donor_status(blood_request_id, donor.id, status);
 
+	}
+	
 	// confirm otp and complete workflow
 	async confirm_otp(blood_request_id: number, donor_id: number, otp: string): Promise<any> {
 		const donor: Donor = await this.donorRepo.find_donor_by_id(donor_id);
 		if (!donor) throw new HttpException('Donor Id not found', 400);
-
+		
 		const bloodReq = await this.donorStatusRepo.find_donor_status_by_blood_request_id(blood_request_id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
-
+		
 		await this.donorStatusRepo.confirm_otp(blood_request_id, donor_id, otp);
-
+		
 		// certificate details
 		const certificateDetails = await this.donorStatusRepo.get_certificate_details_by_blood_req_id(blood_request_id);
-
+		
 		certificateDetails[0].completed_date = certificateDetails[0].completed_date.toISOString().split('T')[0];
-
+		
 		// generate certificate and send mail
 		const attachments: Attachments[] = [];
 		const certificate: string = await generateCertificate(certificateDetails[0]);
 		attachments.push({
 			path: `data:application/pdf;base64,${certificate}`,
 		});
-
+		
 		const config = {
 			to: donor.email,
 			type: 'send_certificate',
 			attachments,
 		};
 		this.mailService.sendMail(config);
-
+		
 		return {
 			message: 'workflow completed',
 		};
 	}
-
+	
 	async get_blood_request_list(donor_id: number) {
 		const donor = await this.donorStatusRepo.getDonorBloodRequsetList(donor_id);
 		if (!donor) throw new HttpException('Donor Id not found', 400);
-
+		
 		return donor;
+	}
+
+	// delete donor status by id
+	async deleteDonoeStatusById(id) {
+		const deleteDonorStatusById = await this.donorStatusRepo.delete_donor_status_by_donor_id(id);
+		return deleteDonorStatusById;
 	}
 }

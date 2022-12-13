@@ -40,19 +40,6 @@ export class DonorController {
     	return 'Hello';
     }
 
-    /// Update donor status for blood request
-    @httpPost(
-    	'/status',
-    	TYPES.AuthGuard,
-    	RolesGuard([ROLES.DONOR]),
-    )
-    async updateStatus(req: Req): Promise<any> {
-    	const { userId } = req.userData;
-
-    	const payload: UpdateStatusDTO = await UpdateStatusDTO.validate(req.body);
-    	return this.donorStatusService.accept_or_reject_blood_request(payload.blood_req_id, userId, payload.status);
-    }
-
     // confirm otp and complete flow
     @httpPost(
     	'/complete/flow',
@@ -71,48 +58,30 @@ export class DonorController {
 	@httpGet(
 		'/blood_request/:status',
 	    TYPES.AuthGuard,
-    	RolesGuard([ROLES.DONOR]),)
+		RolesGuard([ROLES.DONOR])
+	)
     async view_blood_request(
 		@request() req: Req,
 		@requestParam('status') status: string
     ) {
     	const { userId } = req.userData;
-    	return this.donorService.view_blood_request_by_action(userId, status);
+    	return this.donorStatusService.view_blood_request_by_action(userId, status);
     }
 
-    // list accepted donation list
-    @httpGet(
-    	'/donation/accepted',
-    	TYPES.AuthGuard,
-    	RolesGuard([ROLES.DONOR]),
-    )
-	async list_accepted_donation(req: Req): Promise<any> {
-    	const { userId } = req.userData;
 
-    	return this.donorService.list_accepted_donation(userId);
+	////Update Blood Request Status
+	@httpPatch(
+		'/blood_request/status/:status',
+		TYPES.AuthGuard,
+		RolesGuard([ROLES.DONOR])
+	)
+	async update_bloodRequest_status(
+		@request() req: Req,
+		@requestParam('status') status: string
+	) {
+		const { userId } = req.userData;
+		return this.donorStatusService.update_donor_status(userId, req.body.blood_request_id, status);
+		
 	}
 
-    // list rejected donation list
-    @httpGet(
-    	'/donation/rejected',
-    	TYPES.AuthGuard,
-    	RolesGuard([ROLES.DONOR]),
-    )
-    async list_rejected_donation(req: Req): Promise<any> {
-    	const { userId } = req.userData;
-
-    	return this.donorService.list_rejected_donation(userId);
-    }
-
-    // list successful donation list
-    @httpGet(
-    	'/donation/successful',
-    	TYPES.AuthGuard,
-    	RolesGuard([ROLES.DONOR]),
-    )
-    async list_successful_donation(req: Req): Promise<any> {
-    	const { userId } = req.userData;
-
-    	return this.donorService.list_sucessful_donation(userId);
-    }
 }
