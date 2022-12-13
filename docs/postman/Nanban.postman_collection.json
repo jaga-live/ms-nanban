@@ -1,0 +1,1766 @@
+{
+	"info": {
+		"_postman_id": "21e3e248-d414-4685-bb96-eae95a3923d8",
+		"name": "Nanban",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13724405"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "2FA",
+					"item": [
+						{
+							"name": "Send OTP",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"jaga@mailinator.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/auth/2fa/send_otp/:email",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"2fa",
+										"send_otp",
+										":email"
+									],
+									"variable": [
+										{
+											"key": "email",
+											"value": "jaga@mailinator.com"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Send OTP",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"jaga@mailinator.com\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/auth/2fa/send_otp/:email",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"auth",
+												"2fa",
+												"send_otp",
+												":email"
+											],
+											"variable": [
+												{
+													"key": "email",
+													"value": "jagadheesh6@gmail.com"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0 (Ubuntu)"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 11 Dec 2022 18:31:21 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "54"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Security-Policy",
+											"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+										},
+										{
+											"key": "Cross-Origin-Embedder-Policy",
+											"value": "require-corp"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Resource-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "X-DNS-Prefetch-Control",
+											"value": "off"
+										},
+										{
+											"key": "Expect-CT",
+											"value": "max-age=0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "X-Download-Options",
+											"value": "noopen"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Origin-Agent-Cluster",
+											"value": "?1"
+										},
+										{
+											"key": "X-Permitted-Cross-Domain-Policies",
+											"value": "none"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "no-referrer"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"36-lnSl68MpgMg73686t2VyKyENVM8\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"OTP sent successfully\",\n    \"dev_otp\": \"107661\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Validate OTP",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"jaga@mailinator.com\",\r\n    \"otp\": \"139742\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/auth/2fa/otp/validate",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"2fa",
+										"otp",
+										"validate"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Validate OTP",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"jagadheesh6@gmail.com\",\r\n    \"otp\": \"107661\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{URL}}/auth/2fa/otp/validate",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"auth",
+												"2fa",
+												"otp",
+												"validate"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0 (Ubuntu)"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 11 Dec 2022 18:31:40 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "30"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Security-Policy",
+											"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+										},
+										{
+											"key": "Cross-Origin-Embedder-Policy",
+											"value": "require-corp"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Resource-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "X-DNS-Prefetch-Control",
+											"value": "off"
+										},
+										{
+											"key": "Expect-CT",
+											"value": "max-age=0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "X-Download-Options",
+											"value": "noopen"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Origin-Agent-Cluster",
+											"value": "?1"
+										},
+										{
+											"key": "X-Permitted-Cross-Domain-Policies",
+											"value": "none"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "no-referrer"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"1e-HdR9+fUKFOn6OJFNHVew8k0KiEA\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"status\": \"ok\",\n    \"isValid\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Set Password",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"jaga@mailinator.com\",\r\n    \"password\": \"test\",\r\n    \"otp\": \"951807\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/auth/set_password",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"set_password"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login - PLAIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"jag@mailinator.com\",\r\n    \"password\": \"test\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/auth/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Social Auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiNzNjMWNiMWQtZGRkMS00MWRmLWE2NzItZDRjZWVjNzVhZTg4IiwiaWF0IjoxNjcwNDA4ODQyfQ._J4Qj0b9Qnep71-mPupKuPEpgzWzr6Jx__5aKFbTcSM\",\r\n    \"provider\": \"google\",\r\n    \"expo_push_token\": \"token1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://ms-nanban.jagalive.in/auth/social",
+							"protocol": "https",
+							"host": [
+								"ms-nanban",
+								"jagalive",
+								"in"
+							],
+							"path": [
+								"auth",
+								"social"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Social Auth",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJub25jZSI6ImhVWVdYeFRSV2tVWFREbFZta3Fwb05yTEVkcy1ScktwbU5VS1J0Q25MVXMiLCJhbGciOiJSUzI1NiIsIng1dCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSIsImtpZCI6IjJaUXBKM1VwYmpBWVhZR2FYRUpsOGxWMFRPSSJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9hN2I0Njg1NC0wM2UyLTQ5NDktODNjZi1lZjBjNGRlZGEwZTQvIiwiaWF0IjoxNjcwNzgyNzIyLCJuYmYiOjE2NzA3ODI3MjIsImV4cCI6MTY3MDc4NzEwMSwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFWUUFxLzhUQUFBQW5DNEF3b2twT08yNFV1MkxkU3pCbWJrU3hHL1N3U1k2K1cvU2ZjZndsWjFTTzg0MVpHZUllak1pRTVmSlBTOXIvRHkwalhkYmZGSGtQOGJ5aG42YnI3dUNlT2Erd0RWaVJ5SjQ3N2JBc1VZPSIsImFtciI6WyJwd2QiLCJtZmEiXSwiYXBwX2Rpc3BsYXluYW1lIjoiTmFuYmFuIiwiYXBwaWQiOiIwZGJkOGM0MC01MWNiLTQ4MjUtYTZkMy1kMzhhZTlkMDE4NzgiLCJhcHBpZGFjciI6IjAiLCJmYW1pbHlfbmFtZSI6IksiLCJnaXZlbl9uYW1lIjoiSW5kZXJhaml0aCIsImlkdHlwIjoidXNlciIsImlwYWRkciI6IjE1Ny40OS42Ni4zMCIsIm5hbWUiOiJJbmRlcmFqaXRoIEsiLCJvaWQiOiJmMjNhZjc0Ny1kMjRlLTRiZmYtOGQyYi02NTJmNTMyYjE3MTQiLCJwbGF0ZiI6IjEiLCJwdWlkIjoiMTAwMzIwMDIzQkVBNjVBQiIsInJoIjoiMC5BU3NBVkdpMHAtSURTVW1Eei04TVRlMmc1QU1BQUFBQUFBQUF3QUFBQUFBQUFBQXJBQVkuIiwic2NwIjoiZW1haWwgb3BlbmlkIHByb2ZpbGUiLCJzdWIiOiJtMi14NzY1ZWcwNWNhdjdpeUtLWDJ1WUdZbWJzWWl5SURiOEQ1OTFqRHowIiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkFTIiwidGlkIjoiYTdiNDY4NTQtMDNlMi00OTQ5LTgzY2YtZWYwYzRkZWRhMGU0IiwidW5pcXVlX25hbWUiOiJpbmRlcmFqaXRoQGF2ZW9uaW5mb3RlY2guY29tIiwidXBuIjoiaW5kZXJhaml0aEBhdmVvbmluZm90ZWNoLmNvbSIsInV0aSI6IlQtd0RTMHdLZEVlTHZaOHhuQjNWQUEiLCJ2ZXIiOiIxLjAiLCJ3aWRzIjpbImI3OWZiZjRkLTNlZjktNDY4OS04MTQzLTc2YjE5NGU4NTUwOSJdLCJ4bXNfc3QiOnsic3ViIjoiTWF6dExHN1pzY2U4X0EtcjVZWWd0bmx2MnRVSm9Ba2sxUkZPSWF6NzZCNCJ9LCJ4bXNfdGNkdCI6MTUyNTI1OTU0MX0.JDXm0MYQTUnlMDV1IDTuP4NKPydAQWdoUqKR3GfabQzsAQn2NqA1XNVhG6pcR51KhZnoLgW38GYWS3Aw0Zpl6LqZKmERNVbG3uQMfQjg8Fulvlxc7rX8Pj_K0inDymS8nfu5bS8RjJJqa4p_PfiIxHw9jft9SgU-YeMNsRAK8vAwukzzbUtCgDyTWYeGV8Eb56dNk_i5PjFaO5Qg9dDo-DqFvNQcQAKgjGlB3U-SeOqhS2uRuUr5n9bruMUOlbEnnYokXSVh4YB5FD2TedKkhgcfoWWtIWbK5w27lySrcu-WGCoLBDTqar6P4lw5DjKqN87_8RGfHlMum6zCp_XZnA\",\r\n    \"provider\": \"microsoft\",\r\n    \"expo_push_token\": \"ExponentPushToken[D4ci3gKpRhPvwqJomUGNB1]\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://ms-nanban.jagalive.in/auth/social",
+									"protocol": "https",
+									"host": [
+										"ms-nanban",
+										"jagalive",
+										"in"
+									],
+									"path": [
+										"auth",
+										"social"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Dec 2022 18:33:01 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "329"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"149-9pmMn4CCioO1TuTdVKqRERGJM44\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"ok\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsInJvbGUiOiJkb25vciIsInNlc3Npb25JZCI6ImNmMDUxYjVhLTIxMmEtNGVmOC04NWU2LTgwNjUyMjBkYzFiOCIsImlhdCI6MTY3MDc4MzU4MX0.8nSsNz7CdrwdmUVHO2SDL37fbnwLMtbnb4Isbc17ULM\",\n    \"role\": \"donor\",\n    \"email\": \"jagadheesh6@gmail.com\",\n    \"name\": \"Jaga\",\n    \"flags\": {\n        \"donor_registered\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Auth Refresh",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiYmQwMjE5ZjItM2MyNC00YzZjLWI1MjEtNThkZGNlNjJiMWNkIiwiaWF0IjoxNjU5NDM5NzY1fQ.2_s7hAzCw4b2IQBQtz4q7gw3Fvj-AXGnuxxfHtkbL6g",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{URL}}/auth/refresh",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/auth/logout",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/auth/logout",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Dec 2022 18:34:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18-ez3HU6ztP+x97ArcQd0fxpuaOt0\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Logged out\"\n}"
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiMTY1ZmNiN2QtOTMzZi00ZDYyLWI3NTUtZTZhYTBkMWVmMzZlIiwiaWF0IjoxNjYyMDI0MDM0fQ.nes6JRwmXFJkigtnWgWH5_NHl0k6FO7gKWAuEyJKOMw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Create User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"jaga\",\r\n    \"email\": \"jaga@mailinator.com\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user/signup",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View all users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/user",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 7,\r\n    \"name\": \"jaja\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/user",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "User Profile",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwic2Vzc2lvbklkIjoiMThiZWUwYTgtZjNiMC00ZTVlLThlMzctYjc2ZTZhODJhMmM2IiwiaWF0IjoxNjU5NzkzODY0fQ.LUOaFA6KlFuw4eXPgVZCRRi2gzKhpljCovvpvxN-9uo",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{URL}}/user/profile",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"user",
+										"profile"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "User Profile",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwic2Vzc2lvbklkIjoiMThiZWUwYTgtZjNiMC00ZTVlLThlMzctYjc2ZTZhODJhMmM2IiwiaWF0IjoxNjU5NzkzODY0fQ.LUOaFA6KlFuw4eXPgVZCRRi2gzKhpljCovvpvxN-9uo",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{URL}}/user/profile",
+											"host": [
+												"{{URL}}"
+											],
+											"path": [
+												"user",
+												"profile"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.18.0 (Ubuntu)"
+										},
+										{
+											"key": "Date",
+											"value": "Sun, 11 Dec 2022 18:26:41 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "93"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Security-Policy",
+											"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+										},
+										{
+											"key": "Cross-Origin-Embedder-Policy",
+											"value": "require-corp"
+										},
+										{
+											"key": "Cross-Origin-Opener-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "Cross-Origin-Resource-Policy",
+											"value": "same-origin"
+										},
+										{
+											"key": "X-DNS-Prefetch-Control",
+											"value": "off"
+										},
+										{
+											"key": "Expect-CT",
+											"value": "max-age=0"
+										},
+										{
+											"key": "X-Frame-Options",
+											"value": "SAMEORIGIN"
+										},
+										{
+											"key": "Strict-Transport-Security",
+											"value": "max-age=15552000; includeSubDomains"
+										},
+										{
+											"key": "X-Download-Options",
+											"value": "noopen"
+										},
+										{
+											"key": "X-Content-Type-Options",
+											"value": "nosniff"
+										},
+										{
+											"key": "Origin-Agent-Cluster",
+											"value": "?1"
+										},
+										{
+											"key": "X-Permitted-Cross-Domain-Policies",
+											"value": "none"
+										},
+										{
+											"key": "Referrer-Policy",
+											"value": "no-referrer"
+										},
+										{
+											"key": "X-XSS-Protection",
+											"value": "0"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"5d-P1dkSdRCI9Fpjqq1t3CC1kXSsRA\""
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"name\": \"Jaga\",\n    \"email\": \"jagadheesh6@gmail.com\",\n    \"role\": \"donor\",\n    \"donor_registered\": true\n}"
+								}
+							]
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiZTAwODRkNjktMDk1Yy00ODc3LTllOGQtNTZhOTIzMjcxOWQ0IiwiaWF0IjoxNjcwOTE0MzI5fQ.sPWfoS-plsbmTIrYesr3BRw00MZjGZqtdgxU9KdODTo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Donor",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Donor",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"full_name\": \"Jaga\",\r\n    \"gender\": \"male\",\r\n    \"date_of_birth\": \"asd\",\r\n    \"blood_group\": \"sd\",\r\n    \"address_line_1\": \"sd\",\r\n    \"address_line_2\": \"sd\",\r\n    \"pin\": 123456,\r\n    \"city\": \"namkkal\",\r\n    \"mobile_number\": 1234567890,\r\n    \"email\": \"jaga@maili.com\",\r\n    \"last_date_of_donation\": \"a\",\r\n    \"preferred_frequency\": \"sad\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/donor/register",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"donor",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Blood Request",
+					"item": [
+						{
+							"name": "Get Blood Request by Status",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/donor/blood_request/:status",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"donor",
+										"blood_request",
+										":status"
+									],
+									"variable": [
+										{
+											"key": "status",
+											"value": "ACCEPTED"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Donor Status [Accept/ Reject]",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"blood_request_id\": 17\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/donor/blood_request/status/:status",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"donor",
+										"blood_request",
+										"status",
+										":status"
+									],
+									"variable": [
+										{
+											"key": "status",
+											"value": "REJECTED"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Edit Donor",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/JAGADHEESH/Pictures/My Fav ♥/Cat/cat_meme_2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{URL}}/donor",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"donor"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiZTAwODRkNjktMDk1Yy00ODc3LTllOGQtNTZhOTIzMjcxOWQ0IiwiaWF0IjoxNjcwOTE0MzI5fQ.sPWfoS-plsbmTIrYesr3BRw00MZjGZqtdgxU9KdODTo",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Blood Request",
+			"item": [
+				{
+					"name": "Request Blood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type_of_request\": \"routine\",\r\n  \"blood_group\": \"A+\",\r\n  \"required_units\": 1,\r\n  \"requester_name\": \"John\",\r\n  \"gender\": \"Male\",\r\n  \"mobile_number\": 919994959031,\r\n  \"hospital_name\": \"KMCH\",\r\n  \"address_line_1\": \"Address 1\",\r\n  \"address_line_2\": \"Address 2\",\r\n  \"pin\": 123456,\r\n  \"state\": \"CT\",\r\n  \"city\": \"Baloda Bazar\",\r\n  \"place\": \"Magna consequuntur i\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/blood/request",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood",
+								"request"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View all Blood Requests",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/blood/request",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood",
+								"request"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View all Blood Requests",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/blood/request",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"blood",
+										"request"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Dec 2022 18:27:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3605"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e15-LhJzkOfX9LsmjlQ7HAqXjjQjNiM\""
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"immediate\",\n        \"requester_name\": \"Jaga\",\n        \"gender\": \"Male\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"CBE\",\n        \"address_line_1\": \"Kanakkam palayam\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"Tamilnadu\",\n        \"city\": \"Coimbatore\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$jfYq/t9lg5v2OmH34siB2ecWEM17N9h8eK825ZUINIX50s6vLACT.\"\n    },\n    {\n        \"id\": 2,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"routine\",\n        \"requester_name\": \"Jaga\",\n        \"gender\": \"Male\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"CBE\",\n        \"address_line_1\": \"Kanakkam palayam\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"Tamilnadu\",\n        \"city\": \"Coimbatore\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$tzwPUlYVk5Us...hIcDhfOxVaUWz3hdiPDVA.e1fK2QNjBoMX0n3K\"\n    },\n    {\n        \"id\": 3,\n        \"blood_group\": \"B-\",\n        \"required_units\": 1,\n        \"type_of_request\": \"urgent\",\n        \"requester_name\": \"Jasper Keller\",\n        \"gender\": \"Female\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"Eos excepteur volup\",\n        \"address_line_1\": \"32/56, Annanagar, Namakkal, Tamil nadu\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"TN\",\n        \"city\": \"Namakkal\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$/HZFsOCn5Qth3.3Q7gc2VO1dRHsB1s/NUD8pdPNHJl4eWGiIW44sW\"\n    },\n    {\n        \"id\": 4,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"routine\",\n        \"requester_name\": \"Jaga\",\n        \"gender\": \"Male\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"CBE\",\n        \"address_line_1\": \"Kanakkam palayam\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"Tamilnadu\",\n        \"city\": \"Coimbatore\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$oEceGKWNt05nKcZl49nJFOfi8ca3ZkgrXr/ajp/Ty7x9mlddy/HHO\"\n    },\n    {\n        \"id\": 5,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"routine\",\n        \"requester_name\": \"Jaga\",\n        \"gender\": \"Male\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"CBE\",\n        \"address_line_1\": \"Kanakkam palayam\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"Tamilnadu\",\n        \"city\": \"Coimbatore\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$5bV036Hj6nfumxQSm50GMuF/Zpekswa/2GiiBlmWiFHDMTXheyv5q\"\n    },\n    {\n        \"id\": 6,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"routine\",\n        \"requester_name\": \"Shelley Ruiz\",\n        \"gender\": \"Male\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"Aravind Eye Hospital\",\n        \"place\": \"Doloremque velit no\",\n        \"address_line_1\": \"32/56, Annanagar, Namakkal, Tamil nadu\",\n        \"address_line_2\": \"Avinashi Road\",\n        \"state\": \"TN\",\n        \"city\": \"Namakkal\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$Wx1AFeT1ovULGgb/9uO6H.ACiQZ.9YbdPn/CmQ.HGvAxTAWq55IzS\"\n    },\n    {\n        \"id\": 7,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"routine\",\n        \"requester_name\": \"Kylie Norris\",\n        \"gender\": \"Female\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"Et dolor voluptates \",\n        \"address_line_1\": \"32/56, Annanagar, Namakkal, Tamil nadu\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"TN\",\n        \"city\": \"Namakkal\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$Mua/0Ldk0TathqZF0LKCl.j64O8pgCHpY7rj6tpJY8lcYrvl/5jGq\"\n    },\n    {\n        \"id\": 8,\n        \"blood_group\": \"A-\",\n        \"required_units\": 1,\n        \"type_of_request\": \"immediate\",\n        \"requester_name\": \"Ira Hancock\",\n        \"gender\": \"Female\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"Fuga Maxime earum e\",\n        \"address_line_1\": \"32/56, Annanagar, Namakkal, Tamil nadu\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"TN\",\n        \"city\": \"Namakkal\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$GA1aiLbpsflOjYQ7X4OzdObFI3i9zcnagSj5L3SVhJbzx0iqfL9Q2\"\n    },\n    {\n        \"id\": 9,\n        \"blood_group\": \"A+\",\n        \"required_units\": 1,\n        \"type_of_request\": \"immediate\",\n        \"requester_name\": \"Ira Hancock\",\n        \"gender\": \"Female\",\n        \"mobile_number\": \"919994959031\",\n        \"hospital_name\": \"KMCH\",\n        \"place\": \"Fuga Maxime earum e\",\n        \"address_line_1\": \"32/56, Annanagar, Namakkal, Tamil nadu\",\n        \"address_line_2\": \"Kanakkam palayam\",\n        \"state\": \"TN\",\n        \"city\": \"Namakkal\",\n        \"pin\": 637071,\n        \"otp\": \"$2b$12$P3yaqaFKAHOkPxIUzPyqwOUJnp0EMmGkek44J2TXI6Vgt0upiqJUm\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "View Blood Request by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/blood/request/:requestId",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood",
+								"request",
+								":requestId"
+							],
+							"variable": [
+								{
+									"key": "requestId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "View Blood Request by ID",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{URL}}/blood/request/:requestId",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"blood",
+										"request",
+										":requestId"
+									],
+									"variable": [
+										{
+											"key": "requestId",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.18.0 (Ubuntu)"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 11 Dec 2022 18:29:41 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "376"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"178-Pl+7CJ95+qp9b/9kj86LrBtl6m8\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"blood_group\": \"A+\",\n    \"required_units\": 1,\n    \"type_of_request\": \"routine\",\n    \"requester_name\": \"Jaga\",\n    \"gender\": \"Male\",\n    \"mobile_number\": \"919994959031\",\n    \"hospital_name\": \"KMCH\",\n    \"place\": \"CBE\",\n    \"address_line_1\": \"Kanakkam palayam\",\n    \"address_line_2\": \"Kanakkam palayam\",\n    \"state\": \"Tamilnadu\",\n    \"city\": \"Coimbatore\",\n    \"pin\": 637071,\n    \"otp\": \"$2b$12$tzwPUlYVk5Us...hIcDhfOxVaUWz3hdiPDVA.e1fK2QNjBoMX0n3K\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Hospital",
+			"item": [
+				{
+					"name": "Add Hospital",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Puga Hospital\",\r\n    \"address\": \"dummy address\",\r\n    \"pin\": 123456,\r\n    \"state\": \"TN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/hospital",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Hospital - Bulk",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"data\": [\r\n        {\r\n            \"hospital_name\": \"test Hospital 3\",\r\n            \"address_line_1\": \"dummy address\",\r\n            \"address_line_2\": \"dummy address\",\r\n            \"pin\": 123456,\r\n            \"city\": \"cbe\",\r\n            \"state\": \"TN\"\r\n        },\r\n                {\r\n            \"hospital_name\": \"test Hospital 4\",\r\n            \"address_line_1\": \"dummy address\",\r\n            \"address_line_2\": \"dummy address\",\r\n            \"pin\": 123456,\r\n            \"city\": \"cbe\",\r\n            \"state\": \"TN\"\r\n        }\r\n    ]\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/hospital/bulk",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital",
+								"bulk"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View all Hospitals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/hospital",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Single Hospital",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/hospital/:hospitalId",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital",
+								":hospitalId"
+							],
+							"variable": [
+								{
+									"key": "hospitalId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Hospital",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"nyxnoot hospitals, mumbai\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/hospital/:hospitalId",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital",
+								":hospitalId"
+							],
+							"variable": [
+								{
+									"key": "hospitalId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete single Hospital",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/hospital/:hospitalId",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital",
+								":hospitalId"
+							],
+							"variable": [
+								{
+									"key": "hospitalId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6IjdlMDExMDZkLTRiMjgtNDFhOC1iMzExLTkwYjIxMWM4NDczYSIsImlhdCI6MTY2NzIwNTE2N30.pzGpJIcFiXPUudOjF3MQOg33uC7-TMKhSkYsx1WwtmY",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Common",
+			"item": [
+				{
+					"name": "Contact US",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"jaga\",\r\n    \"email\": \"jaga@mailinator.com\",\r\n    \"message\": \"Hello World\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/contact-us",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"contact-us"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Blood",
+			"item": [
+				{
+					"name": "Add Blood",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"blood_mapping\": {\r\n\r\n    \"A-\": [\"A+\"]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/blood/mapping_blood_type",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood",
+								"mapping_blood_type"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwic2Vzc2lvbklkIjoiNjYwMjZhZjItNTA1Ni00NWY2LTk0NDgtNTZiMzFmZjI1ZTgzIiwiaWF0IjoxNjcwNjg1MzI5fQ.TuDGSnQXRFUD7hA2ANdipcz0bnDpUfQ-R9wDaK0WdkA",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Blood Bank",
+			"item": [
+				{
+					"name": "Register Blood Bank",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/blood_bank/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood_bank",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": "http://localhost:3000"
+		}
+	]
+}
