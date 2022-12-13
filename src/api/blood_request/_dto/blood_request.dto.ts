@@ -57,7 +57,7 @@ export interface BloodRequestFilterResponse {
     full_name: string;
     blood_group: string;
     donor_id: number;
-    is_accepted: string;
+    status: string;
     blood_request_id: number;
     created_at: Date;
 }
@@ -67,7 +67,7 @@ export interface BloodRequestFilterResponse {
  */
 export interface NewDonorStatus {
     donor_id: number;
-    is_accepted: string;
+    status: string;
     blood_request_id: number;
     created_at: Date;
 }

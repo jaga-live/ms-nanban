@@ -64,17 +64,30 @@ export class DonorRepository {
 			.getMany();
 	}
 
+	///View all Blood request based
+	async get_blood_request_by_status(userId: number, status: string): Promise<any> {
+		const donor = await this.find_donor_by_id(userId);
+		if (!donor) throw new HttpException('Donor not found', 400);
+		const { id } = donor;
+		return await this.repo.donor()
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.status, s.donor_id
+                                        FROM blood_request r
+                                        JOIN donor_status s
+                                        ON r.id = s.blood_request_id
+                                        WHERE s.status= '${status}' AND s.donor_id = ${id};`);
+	}
+
 	// list of accepted donation
 	async list_accepted_donation(userId: number): Promise<any> {
 		const donor = await this.find_donor_by_id(userId);
 		if (!donor) throw new HttpException('Donor not found', 400);
 		const { id } = donor;
 		return await this.repo.donor()
-			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.is_accepted, s.donor_id
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.status, s.donor_id
                                         FROM blood_request r
                                         JOIN donor_status s
                                         ON r.id = s.blood_request_id
-                                        WHERE s.is_accepted = 'ACCEPTED' AND s.donor_id = ${id};`);
+                                        WHERE s.status = 'ACCEPTED' AND s.donor_id = ${id};`);
 	}
 
 	// list of rejected donation
@@ -82,11 +95,11 @@ export class DonorRepository {
 		const donor = await this.find_donor_by_id(id);
 		if (!donor) throw new HttpException('Donor not found', 400);
 		return await this.repo.donor()
-			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.is_accepted, s.donor_id
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.status, s.donor_id
                                         FROM blood_request r
                                         JOIN donor_status s
                                         ON r.id = s.blood_request_id
-                                        WHERE s.is_accepted = 'REJECTED' AND s.donor_id = ${id};`);
+                                        WHERE s.status = 'REJECTED' AND s.donor_id = ${id};`);
 	}
 
 	// list of successful donation
@@ -94,10 +107,10 @@ export class DonorRepository {
 		const donor = await this.find_donor_by_id(id);
 		if (!donor) throw new HttpException('Donor not found', 400);
 		return await this.repo.donor()
-			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.is_accepted, s.donor_id
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.status, s.donor_id
                                         FROM blood_request r
                                         JOIN donor_status s
                                         ON r.id = s.blood_request_id
-                                        WHERE s.is_accepted = 'ACCEPTED' AND s.donor_id = ${id} AND s.otp_verified = 1;`);
+                                        WHERE s.status = 'ACCEPTED' AND s.donor_id = ${id} AND s.otp_verified = 1;`);
 	}
 }

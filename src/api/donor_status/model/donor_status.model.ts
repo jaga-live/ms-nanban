@@ -9,7 +9,7 @@ export class DonorStatus {
     	donor_id : number;
 
     @Column()
-    	is_accepted: string;
+    	status: string;
 
     @Column()
     	blood_request_id: number;

@@ -5,7 +5,7 @@ export class DonorStatusDto {
 	constructor(
         public id : number,
         public donor_id : number,
-        public is_Accepted: boolean,
+        public status: boolean,
         public blood_request_id: number,
         public created_at: string,
 	) {}
@@ -17,7 +17,7 @@ export class DonorStatusDto {
 		const schema = Joi.object({
 			id: Joi.number().required(),
 			donor_id: Joi.number().required(),
-			is_Accepted: Joi.boolean().required(),
+			status: Joi.boolean().required(),
 			blood_request_id: Joi.number().required(),
 			created_at: Joi.string().required(),
 		});

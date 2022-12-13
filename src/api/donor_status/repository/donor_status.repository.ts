@@ -59,7 +59,7 @@ export class DonorStatusRepository {
 		const update_donor_status = await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()
-			.set({ is_accepted: status ? 'ACCEPTED' : 'REJECTED' })
+			.set({ status: status ? 'ACCEPTED' : 'REJECTED' })
 			.where('donor_id = :donor_id', { donor_id })
 			.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
 			.execute();

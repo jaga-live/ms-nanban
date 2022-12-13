@@ -48,7 +48,7 @@ export class BloodRequestService implements IBloodRequestService {
 			donorStatus.push({
 				donor_id: donor.id,
 				blood_request_id: createBloodRequest.id,
-				is_accepted: 'REQUESTED',
+				status: 'REQUESTED',
 				created_at: new Date(),
 			})
 		));

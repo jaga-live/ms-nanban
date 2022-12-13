@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { inject } from 'inversify';
 import {
-	controller, httpGet, httpPatch, httpPost,
+	controller, httpGet, httpPatch, httpPost, request, requestParam,
 } from 'inversify-express-utils';
 import { Req } from '../../../core/custom.types';
 import { TYPES } from '../../../core/inversify/types';
@@ -67,13 +67,17 @@ export class DonorController {
     }
 	
 
-	////List All Requests
+	////List Blood Request based on Status
 	@httpGet(
-		'/blood_request',
+		'/blood_request/:status',
 	    TYPES.AuthGuard,
     	RolesGuard([ROLES.DONOR]),)
-    async view_blood_request(req: Req) {
-		
+    async view_blood_request(
+		@request() req: Req,
+		@requestParam('status') status: string
+    ) {
+    	const { userId } = req.userData;
+    	return this.donorService.view_blood_request_by_action(userId, status);
     }
 
     // list accepted donation list
