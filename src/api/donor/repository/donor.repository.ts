@@ -28,8 +28,8 @@ export class DonorRepository {
 	}
 
 	// find donor by id
-	async find_donor_by_id(id: number) {
-		const donor = await this.repo.donor().findOneBy({ id });
+	async find_donor_by_id(userId: number) {
+		const donor = await this.repo.donor().findOneBy({ userId });
 		return donor;
 	}
 
@@ -57,7 +57,6 @@ export class DonorRepository {
 	// donor push tokens by donor id
 	async get_donor_expo_push_tokens_by_id(id: number): Promise<any> {
 		const donor = await this.find_donor_by_id(id);
-		if (!donor) throw new HttpException('Donor not found', 400);
 		return await this.repo.expo_expo_push_token()
 			.createQueryBuilder('expo_push_token')
 			.where('userId = :id', { id })
@@ -66,9 +65,10 @@ export class DonorRepository {
 	}
 
 	// list of accepted donation
-	async list_accepted_donation(id: number): Promise<any> {
-		const donor = await this.find_donor_by_id(id);
+	async list_accepted_donation(userId: number): Promise<any> {
+		const donor = await this.find_donor_by_id(userId);
 		if (!donor) throw new HttpException('Donor not found', 400);
+		const { id } = donor;
 		return await this.repo.donor()
 			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.is_accepted, s.donor_id
                                         FROM blood_request r

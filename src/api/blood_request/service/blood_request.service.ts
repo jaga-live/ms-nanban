@@ -33,6 +33,7 @@ export class BloodRequestService implements IBloodRequestService {
 		const otpHash = hashSync(otp.toString(), 12);
 
 		payload.otp = otpHash;
+		payload.created_at = new Date();
 		const createBloodRequest = await this.bloodRequestRepo.createBloodRequest(payload);
 
 		/// Nearby donors

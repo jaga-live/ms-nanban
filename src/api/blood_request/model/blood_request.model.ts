@@ -46,4 +46,7 @@ export class BloodRequest {
 
     @Column()
     	otp: string;
+    @Column()
+    	created_at: Date;
+        
 }

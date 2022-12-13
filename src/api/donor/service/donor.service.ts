@@ -73,9 +73,14 @@ export class DonorService implements IDonorService {
 		return await this.donor.get_donor_expo_push_tokens_by_id(id);
 	}
 
+	// view all blood requests
+	async view_all_blood_Request(userId: number) {
+		return await this.donor;
+	}
+
 	// list accepted donation list for donor
-	async list_accepted_donation(id: number): Promise<any> {
-		return await this.donor.list_accepted_donation(id);
+	async list_accepted_donation(userId: number): Promise<any> {
+		return await this.donor.list_accepted_donation(userId);
 	}
 
 	// list rejected donation list for donor

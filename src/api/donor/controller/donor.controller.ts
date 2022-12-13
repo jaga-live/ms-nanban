@@ -40,7 +40,7 @@ export class DonorController {
     	return 'Hello';
     }
 
-    /// Update donor status for blood requet
+    /// Update donor status for blood request
     @httpPost(
     	'/status',
     	TYPES.AuthGuard,
@@ -65,6 +65,16 @@ export class DonorController {
     	const payload: ConfirmOTPDTO = await ConfirmOTPDTO.validate(req.body);
     	return this.donorStatusService.confirm_otp(payload.blood_req_id, userId, payload.otp);
     }
+	
+
+	////List All Requests
+	@httpGet(
+		'/blood_request',
+	    TYPES.AuthGuard,
+    	RolesGuard([ROLES.DONOR]),)
+    async view_blood_request(req: Req) {
+		
+    }
 
     // list accepted donation list
     @httpGet(
@@ -72,11 +82,11 @@ export class DonorController {
     	TYPES.AuthGuard,
     	RolesGuard([ROLES.DONOR]),
     )
-    async list_accepted_donation(req: Req): Promise<any> {
+	async list_accepted_donation(req: Req): Promise<any> {
     	const { userId } = req.userData;
 
     	return this.donorService.list_accepted_donation(userId);
-    }
+	}
 
     // list rejected donation list
     @httpGet(

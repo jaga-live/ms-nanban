@@ -13,6 +13,7 @@ export class BloodRequestDto {
       public address_line1: string,
       public address_line2: string,
       public pin_code: number,
+      public created_at: Date,
 	) {}
 
 	public static async validate(dto: BloodRequestDto) {
@@ -33,6 +34,7 @@ export class BloodRequestDto {
 			city: Joi.string().required(),
 			pin: Joi.number().required(),
 			type_of_request: Joi.string().required(),
+			approvalStatus: Joi.string()
 		});
 
 		const validate = await schema.validateAsync(dto).catch((err) => {
