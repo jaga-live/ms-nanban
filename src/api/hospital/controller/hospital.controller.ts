@@ -1,7 +1,7 @@
 import { Request } from 'express';
 import { inject } from 'inversify';
 import {
-	controller, httpDelete, httpGet, httpPatch, httpPost, requestBody, requestParam,
+	controller, httpDelete, httpGet, httpPatch, httpPost, request, requestBody, requestParam,
 } from 'inversify-express-utils';
 import { Req } from '../../../core/custom.types';
 import { TYPES } from '../../../core/inversify/types';
@@ -68,6 +68,19 @@ export class HospitalController {
         @requestParam('hospitalId') id: number,
     ) {
     	return this.hospitalService.view_single_hospital(id);
+    }
+
+    /// View Hospital by Status
+    @httpGet(
+    	'/status/:status',
+    	TYPES.AuthGuard,
+    	RolesGuard([ROLES.ADMIN])
+    )
+    async viewByStatus(
+        @request() req: Req,
+        @requestParam('status') status: string,
+    ) {
+    	return this.hospitalService.view_hospital_by_status(status);   
     }
 
     /// Edit Hospital

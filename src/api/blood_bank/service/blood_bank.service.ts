@@ -8,7 +8,8 @@ export interface IBloodBankService{
     register_bloodBank(payload: BloodBank): Promise<BloodBank>
     create_multiple_bloodBank(payload: BloodBank[])
     view_all_bloodBank(): Promise<BloodBank[]>
-    view_single_bloodBank(id: number): Promise<BloodBank>
+	view_single_bloodBank(id: number): Promise<BloodBank>
+	view_bloodBank_by_status(status: string): Promise<BloodBank[]>
     edit_single_bloodBank(id: number, payload: EditBloodBankDto): Promise<BloodBank>
     delete_bloodBank(id: number): Promise<any>
 }
@@ -35,6 +36,12 @@ export class BloodBankService implements IBloodBankService {
 
 	async view_single_bloodBank(id: number): Promise<BloodBank> {
 		const bloodBank = await this.bloodBankRepo.findById(id);
+		if (!bloodBank) throw new HttpException('BloodBank Not found', 400);
+		return bloodBank;
+	}
+
+	async view_bloodBank_by_status(status: string): Promise<BloodBank[]> {
+		const bloodBank = await this.bloodBankRepo.findByStatus(status);
 		if (!bloodBank) throw new HttpException('BloodBank Not found', 400);
 		return bloodBank;
 	}

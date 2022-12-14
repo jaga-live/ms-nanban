@@ -8,7 +8,8 @@ export interface IBloodCampService{
     register_bloodCamp(payload: BloodCamp): Promise<BloodCamp>
     create_multiple_bloodCamp(payload: BloodCamp[])
     view_all_bloodCamp(): Promise<BloodCamp[]>
-    view_single_bloodCamp(id: number): Promise<BloodCamp>
+	view_single_bloodCamp(id: number): Promise<BloodCamp>
+	view_bloodCamp_by_status(status: string): Promise<BloodCamp[]>
     edit_single_bloodCamp(id: number, payload: EditBloodCampDto): Promise<BloodCamp>
     delete_bloodCamp(id: number): Promise<any>
 }
@@ -35,6 +36,12 @@ export class BloodCampService implements IBloodCampService {
 
 	async view_single_bloodCamp(id: number): Promise<BloodCamp> {
 		const bloodCamp = await this.bloodCampRepo.findById(id);
+		if (!bloodCamp) throw new HttpException('BloodCamp Not found', 400);
+		return bloodCamp;
+	}
+	
+	async view_bloodCamp_by_status(status: string): Promise<BloodCamp[]> {
+		const bloodCamp = await this.bloodCampRepo.findByStatus(status);
 		if (!bloodCamp) throw new HttpException('BloodCamp Not found', 400);
 		return bloodCamp;
 	}

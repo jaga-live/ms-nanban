@@ -56,6 +56,17 @@ export class BloodCampController {
     ) {
     	return this.bloodCampService.view_single_bloodCamp(id);
     }
+    /// View Single BloodCamp
+    @httpGet(
+    	'/status/:status',
+    	TYPES.AuthGuard,
+    	RolesGuard([ROLES.ADMIN])
+    )
+    async viewByStatus(
+        @requestParam('status') status: string,
+    ) {
+    	return this.bloodCampService.view_bloodCamp_by_status(status);
+    }
 
     /// Edit BloodCamp
     @httpPatch('/:bloodCampId',

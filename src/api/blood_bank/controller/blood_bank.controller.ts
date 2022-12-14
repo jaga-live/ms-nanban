@@ -58,6 +58,17 @@ export class BloodBankController {
     	return this.bloodBankService.view_single_bloodBank(id);
     }
 
+    /// View Blood Bank by Status
+    @httpGet(
+    	'/status/:status',
+    	TYPES.AuthGuard,
+    	RolesGuard([ROLES.ADMIN]))
+    async viewByStatus(
+        @requestParam('status') status: string,
+    ) {
+    	return this.bloodBankService.view_bloodBank_by_status(status);
+    }
+
     /// Edit BloodBank
     @httpPatch('/:bloodBankId',
     	TYPES.AuthGuard,

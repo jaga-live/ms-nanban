@@ -40,6 +40,15 @@ export class BloodCampRepository {
 		return bloodCamp;
 	}
 
+	/// Find by status
+	async findByStatus(status: string) {
+		const bloodCamp = await this.repo.blood_camp().find({
+			where: {
+				approvalStatus: status
+			} });
+		return bloodCamp;
+	}
+
 	/// Edit Single
 	async editOne(id: number, payload: any): Promise<any> {
 		await this.repo.blood_camp().update({ id }, { ...payload });

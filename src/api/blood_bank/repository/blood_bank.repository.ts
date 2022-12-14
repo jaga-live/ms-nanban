@@ -40,6 +40,15 @@ export class BloodBankRepository {
 		return bloodBank;
 	}
 
+	///Find by status
+	async findByStatus(status: string) {
+		const bloodBank = await this.repo.blood_bank().find({
+			where: {
+				approvalStatus: status
+			} });
+		return bloodBank;
+	}
+
 	/// Edit Single
 	async editOne(id: number, payload: any): Promise<any> {
 		await this.repo.blood_bank().update({ id }, { ...payload });

@@ -41,6 +41,17 @@ export class HospitalRepository {
 		return hospital;
 	}
 
+	/// Find by status
+	async findByStatus(status: string) {
+		const hospital = await this.repo.hospital().find({
+			where: {
+				approvalStatus: status
+			}
+		});
+		
+		return hospital;
+	}
+
 	/// Edit Single
 	async editOne(id: number, payload: any): Promise<any> {
 		await this.repo.hospital().update({ id }, { ...payload });

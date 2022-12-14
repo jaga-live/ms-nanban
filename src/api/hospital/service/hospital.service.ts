@@ -10,6 +10,7 @@ export interface IHospitalService{
     create_multiple_hospital(payload: Hospital[])
     view_all_hospital(): Promise<Hospital[]>
     view_single_hospital(id: number): Promise<Hospital>
+    view_hospital_by_status(status: string)
     edit_single_hospital(id: number, payload: EditHospitalDto): Promise<Hospital>
     delete_hospital(id: number): Promise<any>
 }
@@ -42,6 +43,12 @@ export class HospitalService implements IHospitalService {
 
 	async view_single_hospital(id: number): Promise<Hospital> {
 		const hospital = await this.hospitalRepo.findById(id);
+		if (!hospital) throw new HttpException('Hospital Not found', 400);
+		return hospital;
+	}
+
+	async view_hospital_by_status(status: string) {
+		const hospital = await this.hospitalRepo.findByStatus(status);
 		if (!hospital) throw new HttpException('Hospital Not found', 400);
 		return hospital;
 	}
