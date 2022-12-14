@@ -16,6 +16,7 @@ export class CreateDonorDto {
         public email: string,
         public last_date_of_donation: string,
         public preferred_frequency: string,
+        public image?: string,
 	) {}
 
 	public static async validate(dto : CreateDonorDto) {
@@ -32,6 +33,7 @@ export class CreateDonorDto {
 			email: Joi.string().required().email(),
 			last_date_of_donation: Joi.string().required(),
 			preferred_frequency: Joi.string().required(),
+			image: Joi.string().allow(null),
 		});
 
 		const validate = await schema.validateAsync(dto).catch((err) => {

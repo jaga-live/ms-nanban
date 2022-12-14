@@ -50,7 +50,9 @@ export class AuthService {
 		await this.Authrepo.create_auth_session(isUserValid, isAuthvalid, sessionId);
 
 		// Store push token
-		await this.Authrepo.store_expo_push_token(isUserValid, expoPushToken);
+		if (expoPushToken) {
+			await this.Authrepo.store_expo_push_token(isUserValid, expoPushToken);
+		}
 
 		return {
 			status: 'ok',
