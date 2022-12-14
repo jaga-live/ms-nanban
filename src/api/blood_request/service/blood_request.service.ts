@@ -47,6 +47,7 @@ export class BloodRequestService implements IBloodRequestService {
 		availableDonors.map((donor) => (
 			donorStatus.push({
 				donor_id: donor.id,
+				user_id: donor.userId,
 				blood_request_id: createBloodRequest.id,
 				status: 'REQUESTED',
 				created_at: new Date(),
@@ -58,7 +59,7 @@ export class BloodRequestService implements IBloodRequestService {
 
 		// Send push notification for donor
 		availableDonors.map(async (donor) => {
-			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.id);
+			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.user_id);
 			if (tokens?.length > 0) sendPushNotification(tokens, 'Blood requested');
 		});
 

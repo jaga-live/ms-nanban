@@ -67,6 +67,7 @@ export interface BloodRequestFilterResponse {
  */
 export interface NewDonorStatus {
     donor_id: number;
+    user_id: number;
     status: string;
     blood_request_id: number;
     created_at: Date;
