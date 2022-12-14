@@ -5,6 +5,7 @@ import {
 } from 'inversify-express-utils';
 import { Req } from '../../../core/custom.types';
 import { TYPES } from '../../../core/inversify/types';
+import { AuthGuard } from '../../auth/middleware/auth.middleware';
 import { RolesGuard } from '../../auth/middleware/roles.middleware';
 import { ROLES } from '../../users/enum/roles.user';
 import { IBloodBankService } from '../service/blood_bank.service';
@@ -58,7 +59,10 @@ export class BloodBankController {
     }
 
     /// Edit BloodBank
-    @httpPatch('/:bloodBankId')
+    @httpPatch('/:bloodBankId',
+    	TYPES.AuthGuard,
+    	RolesGuard([ROLES.ADMIN])
+    )
     async editBloodBank(
         @requestParam('bloodBankId') id: number,
         @requestBody() payload: EditBloodBankDto,

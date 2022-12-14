@@ -58,7 +58,9 @@ export class BloodCampController {
     }
 
     /// Edit BloodCamp
-    @httpPatch('/:bloodCampId')
+    @httpPatch('/:bloodCampId',
+    	TYPES.AuthGuard,
+    	RolesGuard([ROLES.ADMIN]))
     async editBloodCamp(
         @requestParam('bloodCampId') id: number,
         @requestBody() payload: EditBloodCampDto,

@@ -71,7 +71,10 @@ export class HospitalController {
     }
 
     /// Edit Hospital
-    @httpPatch('/:hospitalId')
+    @httpPatch('/:hospitalId',
+    	TYPES.AuthGuard,
+    	RolesGuard([ROLES.ADMIN])
+    )
     async editHospital(
         @requestParam('hospitalId') id: number,
         @requestBody() payload: EditHospitalDto,

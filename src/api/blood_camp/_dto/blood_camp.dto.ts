@@ -32,6 +32,7 @@ export class EditBloodCampDto {
         public camp_name?: string,
         public event_address?: string,
         public mobile_number?: number,
+		public approvalStatus?: string,
 	) { }
 
 	public static async validate(dto: EditBloodCampDto) {
@@ -41,6 +42,7 @@ export class EditBloodCampDto {
 			camp_name: Joi.string(),
 			event_address: Joi.string(),
 			mobile_number: Joi.number(),
+			approvalStatus: Joi.string(),
 		});
 
 		const validate = await schema.validateAsync(dto).catch((err) => {

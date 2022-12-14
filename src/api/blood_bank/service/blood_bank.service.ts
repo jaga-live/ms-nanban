@@ -21,7 +21,7 @@ export class BloodBankService implements IBloodBankService {
 
 	///Register BloodBank
 	async register_bloodBank(payload: BloodBank): Promise<BloodBank> {
-		payload.approvalStatus = 'pending';
+		payload.approvalStatus = 'REQUESTED';
 		return this.bloodBankRepo.create(payload);
 	}
 

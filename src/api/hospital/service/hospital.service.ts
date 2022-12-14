@@ -22,13 +22,13 @@ export class HospitalService implements IHospitalService {
 
 	/// Create Hospital
 	async create_hospital(payload: Hospital): Promise<Hospital> {
-		payload.approvalStatus = 'accepted';
+		payload.approvalStatus = 'APPROVED';
 		return this.hospitalRepo.create(payload);
 	}
 
 	///Register Hospital
 	async register_hospital(payload: Hospital): Promise<Hospital> {
-		payload.approvalStatus = 'pending';
+		payload.approvalStatus = 'REQUESTED';
 		return this.hospitalRepo.create(payload);
 	}
 

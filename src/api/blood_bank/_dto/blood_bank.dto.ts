@@ -51,6 +51,7 @@ export class EditBloodBankDto {
 			pin: Joi.number(),
 			state: Joi.string(),
 			city: Joi.string(),
+			approvalStatus: Joi.string(),
 		});
 
 		const validate = await schema.validateAsync(dto).catch((err) => {

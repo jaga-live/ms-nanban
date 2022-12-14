@@ -40,6 +40,7 @@ export class EditHospitalDto {
         public state?: string,
         public qrId?: string,
         public id?: string,
+        public approvalStatus?: string,
 	) { }
 
 	public static async validate(dto: EditHospitalDto) {
@@ -54,6 +55,7 @@ export class EditHospitalDto {
 			pin: Joi.number(),
 			state: Joi.string(),
 			city: Joi.string(),
+			approvalStatus: Joi.string(),
 		});
 
 		const validate = await schema.validateAsync(dto).catch((err) => {

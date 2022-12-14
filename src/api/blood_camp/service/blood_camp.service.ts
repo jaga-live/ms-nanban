@@ -21,7 +21,7 @@ export class BloodCampService implements IBloodCampService {
 
 	///Register BloodCamp
 	async register_bloodCamp(payload: BloodCamp): Promise<BloodCamp> {
-		payload.approvalStatus = 'pending';
+		payload.approvalStatus = 'REQUESTED';
 		return this.bloodCampRepo.create(payload);
 	}
 
