@@ -80,7 +80,10 @@ export class DonorController {
 		@requestParam('status') status: string
 	) {
 		const { userId } = req.userData;
-		return this.donorStatusService.update_donor_status(userId, req.body.blood_request_id, status);
+		await this.donorStatusService.update_donor_status(userId, req.body.blood_request_id, status);
+		return {
+			message: 'Status Updated'
+		}
 		
 	}
 
