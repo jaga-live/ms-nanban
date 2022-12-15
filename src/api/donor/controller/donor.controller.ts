@@ -42,7 +42,7 @@ export class DonorController {
 
     // confirm otp and complete flow
     @httpPost(
-    	'/complete/flow',
+    	'/blood_request/flow/complete',
     	TYPES.AuthGuard,
     	RolesGuard([ROLES.DONOR]),
     )

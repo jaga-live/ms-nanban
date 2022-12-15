@@ -74,14 +74,14 @@ export class DonorStatusService implements IDonorStatusService {
 	}
 	
 	// confirm otp and complete workflow
-	async confirm_otp(blood_request_id: number, donor_id: number, otp: string): Promise<any> {
-		const donor: Donor = await this.donorRepo.find_donor_by_id(donor_id);
+	async confirm_otp(blood_request_id: number, user_id: number, otp: string): Promise<any> {
+		const donor: Donor = await this.donorRepo.find_donor_by_id(user_id);
 		if (!donor) throw new HttpException('Donor Id not found', 400);
 		
 		const bloodReq = await this.donorStatusRepo.find_donor_status_by_blood_request_id(blood_request_id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
 		
-		await this.donorStatusRepo.confirm_otp(blood_request_id, donor_id, otp);
+		await this.donorStatusRepo.confirm_otp(blood_request_id, donor.id, otp);
 		
 		// certificate details
 		const certificateDetails = await this.donorStatusRepo.get_certificate_details_by_blood_req_id(blood_request_id);

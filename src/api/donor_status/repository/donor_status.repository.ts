@@ -7,6 +7,7 @@ import { Repository } from '../../../database/sql';
 import { DonorStatus } from '../model/donor_status.model';
 import { DonorService } from '../../donor/service/donor.service';
 import { DonorRepository } from '../../donor/repository/donor.repository';
+import { Console } from 'console';
 
 @injectable()
 export class DonorStatusRepository {
@@ -75,6 +76,7 @@ export class DonorStatusRepository {
 
 	// accept or reject blood request
 	async update_donor_status(blood_request_id: number, donor_id: number, status: string): Promise<any> {
+		console.log(blood_request_id, donor_id, status)
 		await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()
@@ -108,7 +110,7 @@ export class DonorStatusRepository {
 		return await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()
-			.set({ otp_verified: true, completed_date: new Date() })
+			.set({ otp_verified: true, completed_date: new Date(), status: 'DONATION_COMPLETE' })
 			.where('donor_id = :donor_id', { donor_id })
 			.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
 			.execute();

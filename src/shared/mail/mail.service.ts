@@ -20,7 +20,6 @@ class Mail {
 			payload.context,
 			payload?.attachments,
 		);
-		console.log(mailConfig);
 		const transporter = nodemailer.createTransport({
 			service: 'gmail',
 			host: 'smtp.gmail.com',
