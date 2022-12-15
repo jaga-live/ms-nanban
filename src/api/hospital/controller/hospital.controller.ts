@@ -71,11 +71,7 @@ export class HospitalController {
     }
 
     /// View Hospital by Status
-    @httpGet(
-    	'/status/:status',
-    	TYPES.AuthGuard,
-    	RolesGuard([ROLES.ADMIN])
-    )
+    @httpGet('/status/:status')
     async viewByStatus(
         @request() req: Req,
         @requestParam('status') status: string,

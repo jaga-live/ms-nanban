@@ -6,18 +6,20 @@ export interface PushToken {
     expo_push_token: string;
 }
 
-const messages = [];
 
 // send push notification
-export const sendPushNotification = async (pushTokens: PushToken[], message: string) => {
+export const sendPushNotification = async (pushTokens: PushToken[], body: any, message: string) => {
 	try {
-		for (const token of pushTokens) {
-			if (!Expo.isExpoPushToken(token)) continue;
+		const messages = [];
 
+		for (let index = 0; index < pushTokens.length; index++) {
+			const token = pushTokens[index].expo_push_token;
+			if (!Expo.isExpoPushToken(token)) continue;
 			messages.push({
-				to: token.expo_push_token,
+				to: token,
 				sound: 'default',
 				body: message,
+				data: body
 			});
 		}
 

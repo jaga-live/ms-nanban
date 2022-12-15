@@ -54,13 +54,21 @@ export class BloodRequestService implements IBloodRequestService {
 			})
 		));
 
+		
 		// save donor request status
 		await this.donorStatusService.saveDonorStatus(donorStatus);
 
 		// Send push notification for donor
 		availableDonors.map(async (donor) => {
-			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.user_id);
-			if (tokens?.length > 0) sendPushNotification(tokens, 'Blood requested');
+			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.userId);
+			if (tokens?.length > 0) sendPushNotification(
+				tokens,
+				{
+					type: 'incoming_blood_request',
+					id: createBloodRequest.id
+				},
+				'You have a new Blood Request'
+			);
 		});
 
 		/// Send OTP to user mobile
