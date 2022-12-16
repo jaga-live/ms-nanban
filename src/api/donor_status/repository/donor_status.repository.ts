@@ -95,10 +95,10 @@ export class DonorStatusRepository {
 			.getOne();
 
 		const donor_status = await this.repo.donor_status()
-		.createQueryBuilder('donor_status')
-		.where('donor_id = :donor_id', { donor_id })
-		.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
-		.getOne();
+			.createQueryBuilder('donor_status')
+			.where('donor_id = :donor_id', { donor_id })
+			.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
+			.getOne();
 		
 		// already verified
 		if (donor_status.otp_verified) throw new HttpException('OTP already verified', 401);
@@ -128,7 +128,7 @@ export class DonorStatusRepository {
 	}
 
 	// certificate details by blood request id
-	async get_certificate_details_by_blood_req_id(id: number): Promise<any> {
+	async get_certificate_details_by_blood_req_and_donor(bloodReqId: number, donorId: number): Promise<any> {
 		return await this.repo.blood_request()
 			.query(`SELECT d.full_name, ds.completed_date, br.required_units, br.hospital_name
                                         FROM blood_request br
@@ -136,6 +136,6 @@ export class DonorStatusRepository {
                                         ON br.id = ds.blood_request_id
                                         JOIN donor d
                                         ON ds.donor_id = d.id
-                                        WHERE br.id = ${id};`);
+                                        WHERE br.id = ${bloodReqId} AND ds.donor_id = ${donorId} ;`);
 	}
 }

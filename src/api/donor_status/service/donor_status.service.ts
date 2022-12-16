@@ -85,9 +85,8 @@ export class DonorStatusService implements IDonorStatusService {
 		await this.donorStatusRepo.confirm_otp(blood_request_id, donor.id, otp);
 		
 		// certificate details
-		const certificateDetails = await this.donorStatusRepo.get_certificate_details_by_blood_req_id(blood_request_id);
-		
-		certificateDetails[0].completed_date = certificateDetails[0].completed_date.toISOString().split('T')[0];
+		const certificateDetails = await this.donorStatusRepo.get_certificate_details_by_blood_req_and_donor(blood_request_id, donor.id);
+		certificateDetails[0].completed_date = new Date().toISOString().split('T')[0];
 		
 		// generate certificate and send mail
 		const attachments: Attachments[] = [];
