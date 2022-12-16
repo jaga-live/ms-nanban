@@ -57,7 +57,8 @@ export class DonorStatusRepository {
 		if (!donor) throw new HttpException('Donor not found', 400);
 		const { id } = donor;
 		return await this.repo.donor()
-			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, s.status, s.donor_id
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name,
+			r.gender, r.required_units, r.type_of_request, r.created_at, s.status, s.donor_id
                                         FROM blood_request r
                                         JOIN donor_status s
                                         ON r.id = s.blood_request_id
@@ -76,7 +77,7 @@ export class DonorStatusRepository {
 
 	// accept or reject blood request
 	async update_donor_status(blood_request_id: number, donor_id: number, status: string): Promise<any> {
-		console.log(blood_request_id, donor_id, status)
+		console.log(blood_request_id, donor_id, status);
 		await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()

@@ -83,7 +83,7 @@ export class DonorController {
 		await this.donorStatusService.update_donor_status(userId, req.body.blood_request_id, status);
 		return {
 			message: 'Status Updated'
-		}
+		};
 		
 	}
 
