@@ -31,7 +31,7 @@ export class CreateDonorDto {
 			pin: Joi.number().required(),
 			mobile_number: Joi.number().required(),
 			email: Joi.string().required().email(),
-			last_date_of_donation: Joi.string().required(),
+			last_date_of_donation: Joi.string(),
 			preferred_frequency: Joi.string().required(),
 			image: Joi.string().allow(null),
 		});
