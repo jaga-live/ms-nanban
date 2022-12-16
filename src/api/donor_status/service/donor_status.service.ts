@@ -83,7 +83,9 @@ export class DonorStatusService implements IDonorStatusService {
 		
 		
 		await this.donorStatusRepo.confirm_otp(blood_request_id, donor.id, otp);
-		
+		return {
+			message: 'OTP Confirmed',
+		};
 		// certificate details
 		const certificateDetails = await this.donorStatusRepo.get_certificate_details_by_blood_req_and_donor(blood_request_id, donor.id);
 		certificateDetails[0].completed_date = new Date().toISOString().split('T')[0];
@@ -103,7 +105,7 @@ export class DonorStatusService implements IDonorStatusService {
 		this.mailService.sendMail(config);
 		
 		return {
-			message: 'workflow completed',
+			message: 'OTP Confirmed',
 		};
 	}
 	
