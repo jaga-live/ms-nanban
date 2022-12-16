@@ -48,7 +48,7 @@ export class DonorController {
     )
     async confirm_otp(req: Req): Promise<any> {
     	const { userId } = req.userData;
-
+		console.log(req.body)
     	const payload: ConfirmOTPDTO = await ConfirmOTPDTO.validate(req.body);
     	return this.donorStatusService.confirm_otp(payload.blood_req_id, userId, payload.otp);
     }
