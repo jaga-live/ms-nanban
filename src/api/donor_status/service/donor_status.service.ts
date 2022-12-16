@@ -78,8 +78,9 @@ export class DonorStatusService implements IDonorStatusService {
 		const donor: Donor = await this.donorRepo.find_donor_by_id(user_id);
 		if (!donor) throw new HttpException('Donor Id not found', 400);
 		
-		const bloodReq = await this.donorStatusRepo.find_donor_status_by_blood_request_id(blood_request_id);
+		const bloodReq = await this.donorStatusRepo.find_donor_status_by_donor_id(donor.id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
+		
 		
 		await this.donorStatusRepo.confirm_otp(blood_request_id, donor.id, otp);
 		

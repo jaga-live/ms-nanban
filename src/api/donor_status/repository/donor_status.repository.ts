@@ -95,11 +95,11 @@ export class DonorStatusRepository {
 			.getOne();
 
 		const donor_status = await this.repo.donor_status()
-			.createQueryBuilder('donor_status')
-			.where('donor_id = :donor_id', { donor_id })
-			.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
-			.getOne();
-
+		.createQueryBuilder('donor_status')
+		.where('donor_id = :donor_id', { donor_id })
+		.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
+		.getOne();
+		
 		// already verified
 		if (donor_status.otp_verified) throw new HttpException('OTP already verified', 401);
 
@@ -107,7 +107,6 @@ export class DonorStatusRepository {
 		const verifiedOtp = compareSync(otp, bloodRequest.otp);
 		if (!verifiedOtp) throw new HttpException('Invalid OTP', 401);
 
-		// complete the flow
 		return await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()
