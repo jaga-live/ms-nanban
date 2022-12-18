@@ -34,6 +34,7 @@ export class HospitalService implements IHospitalService {
 	}
 
 	async create_multiple_hospital(payload: any) {
+		payload.approvalStatus = 'APPROVED';
 		return this.hospitalRepo.create_multiple(payload);
 	}
 
