@@ -71,7 +71,7 @@ export class DonorStatusService implements IDonorStatusService {
 		const bloodReq = await this.donorStatusRepo.find_donor_status_by_blood_request_id(blood_request_id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
 
-		// await this.donorStatusRepo.update_donor_status(blood_request_id, donor.id, status);
+		await this.donorStatusRepo.update_donor_status(blood_request_id, donor.id, status);
 
 		///Notify Donor Via Push
 		const donorPushTokens = await this.donorRepo.get_donor_expo_push_tokens_by_id(donor.userId);
@@ -153,7 +153,7 @@ export class DonorStatusService implements IDonorStatusService {
 		case DONOR_STATUS_TYPES.DONATION_COMPLETE:
 			content = 'We received your Blood Donation. Thank you so much!';
 			break;
-		case DONOR_STATUS_TYPES.DONATION_CANCELLED:
+		case DONOR_STATUS_TYPES.DONATION_REJECTED:
 			content = 'You have declined an ongoing Blood Donation!';
 			break;
 		default:
