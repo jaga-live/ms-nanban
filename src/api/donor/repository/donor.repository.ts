@@ -55,10 +55,10 @@ export class DonorRepository {
 	}
 
 	// donor push tokens by donor id
-	async get_donor_expo_push_tokens_by_id(id: number): Promise<any> {
+	async get_donor_expo_push_tokens_by_id(userId: number): Promise<any> {
 		return await this.repo.expo_expo_push_token()
 			.createQueryBuilder('expo_push_token')
-			.where('userId = :id', { id })
+			.where('userId = :userId', { userId })
 			.addSelect('expo_push_token')
 			.getMany();
 	}

@@ -1,11 +1,18 @@
 import Expo from 'expo-server-sdk';
+import { Repository } from '../../database/sql';
+import { container } from '../../core/inversify/inversify.config';
+import { TYPES } from '../../core/inversify/types';
 import { expo } from './config';
+import { AuthRepository } from '../../api/auth/repository/auth.repository';
 
 // interface for push tokens
 export interface PushToken {
     expo_push_token: string;
 }
 
+enum EXPO_ERROR  {
+	DeviceNotRegistered = 'DeviceNotRegistered'
+}
 
 // send push notification
 export const sendPushNotification = async (pushTokens: PushToken[], body: any, message: string) => {
@@ -25,17 +32,25 @@ export const sendPushNotification = async (pushTokens: PushToken[], body: any, m
 
 		const chunks = expo.chunkPushNotifications(messages);
 
-		const tickets = [];
 		for (const chunk of chunks) {
 			try {
-				const ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+				const ticketChunk: any = await expo.sendPushNotificationsAsync(chunk);
 				console.log(ticketChunk);
-				tickets.push(...ticketChunk);
+				const errInfo: any = ticketChunk[0].details as any;
+				
+				if (errInfo?.error === EXPO_ERROR.DeviceNotRegistered || errInfo?.fault === 'developer') {
+					handleInvalidToken(chunk[0].to as string);
+				}
 			} catch (error) {
 				console.error(error);
 			}
 		}
 	} catch (error) {
-		console.log(error);
+		// console.log(error);
 	}
+};
+
+const handleInvalidToken = async (pushToken: string) => {
+	const authRepo = container.get<AuthRepository>(AuthRepository);
+	await authRepo.delete_expo_push_token_by_token(pushToken);
 };

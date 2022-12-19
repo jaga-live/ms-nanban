@@ -5,8 +5,10 @@ import { TYPES } from '../../../core/inversify/types';
 import { generateCertificate } from '../../../helper/html-to-pdf-buffer';
 import { MailDto } from '../../../shared/mail/mail.dto';
 import { IMailService, MailService } from '../../../shared/mail/mail.service';
+import { sendPushNotification } from '../../../shared/push_notification';
 import { Donor } from '../../donor/model/donor.model';
 import { DonorRepository } from '../../donor/repository/donor.repository';
+import { DONOR_STATUS_TYPES } from '../enum/donor_status.enum';
 import { DonorStatusRepository } from '../repository/donor_status.repository';
 
 export interface IDonorStatusService{
@@ -69,7 +71,22 @@ export class DonorStatusService implements IDonorStatusService {
 		const bloodReq = await this.donorStatusRepo.find_donor_status_by_blood_request_id(blood_request_id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
 
-		return this.donorStatusRepo.update_donor_status(blood_request_id, donor.id, status);
+		// await this.donorStatusRepo.update_donor_status(blood_request_id, donor.id, status);
+
+		///Notify Donor Via Push
+		const donorPushTokens = await this.donorRepo.get_donor_expo_push_tokens_by_id(donor.userId);
+		if (donorPushTokens.length === 0) return;
+
+		///get Push Notification Content
+		const pushContent = await this.buildPushContent(status);
+		sendPushNotification(
+			donorPushTokens,
+			{
+				type: 'accepted_blood_request',
+				id: blood_request_id
+			},
+			pushContent
+		);
 
 	}
 	
@@ -120,5 +137,29 @@ export class DonorStatusService implements IDonorStatusService {
 	async deleteDonoeStatusById(id) {
 		const deleteDonorStatusById = await this.donorStatusRepo.delete_donor_status_by_donor_id(id);
 		return deleteDonorStatusById;
+	}
+
+	///Private Methods
+	private async buildPushContent(blood_request_action: string, ) {
+		let content: string;
+
+		switch (blood_request_action) {
+		case DONOR_STATUS_TYPES.ACCEPTED:
+			content = 'You have accepted an incoming Blood Request!';
+			break;
+		case DONOR_STATUS_TYPES.REJECTED:
+			content = 'You have rejected an incoming Blood Request!';
+			break;
+		case DONOR_STATUS_TYPES.DONATION_COMPLETE:
+			content = 'We received your Blood Donation. Thank you so much!';
+			break;
+		case DONOR_STATUS_TYPES.DONATION_CANCELLED:
+			content = 'You have declined an ongoing Blood Donation!';
+			break;
+		default:
+			break;
+		}
+
+		return content;
 	}
 }

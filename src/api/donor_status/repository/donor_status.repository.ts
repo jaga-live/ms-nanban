@@ -77,7 +77,6 @@ export class DonorStatusRepository {
 
 	// accept or reject blood request
 	async update_donor_status(blood_request_id: number, donor_id: number, status: string): Promise<any> {
-		console.log(blood_request_id, donor_id, status);
 		await this.repo.donor_status()
 			.createQueryBuilder('donor_status')
 			.update()

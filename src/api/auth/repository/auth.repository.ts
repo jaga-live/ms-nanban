@@ -88,6 +88,15 @@ export class AuthRepository {
 			.execute();
 	}
 
+	// Delete push tokens for user
+	async delete_expo_push_token_by_token(pushToken: string): Promise<any> {
+		await this.repo.expo_expo_push_token()
+			.createQueryBuilder('expo_push_token')
+			.delete()
+			.where('expo_push_token = :pushToken', { pushToken })
+			.execute();
+	}
+
 	/// Delete Auth and auth Session
 	async delete_auth(userId: number) {
 		const auth_to_delete = await this.get_auth(userId);
