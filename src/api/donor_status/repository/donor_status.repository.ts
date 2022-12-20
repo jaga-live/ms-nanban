@@ -52,13 +52,14 @@ export class DonorStatusRepository {
 	}
 
 	///View all Blood request based
-	async get_blood_request_by_status(userId: number, status: string): Promise<any> {
-		const donor = await this.donorRepo.find_donor_by_id(userId);
+	async get_blood_request_by_status(donorId: number, status: string): Promise<any> {
+		const donor = await this.donorRepo.find_donor_by_id(donorId);
 		if (!donor) throw new HttpException('Donor not found', 400);
+
 		const { id } = donor;
 		return await this.repo.donor()
-			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name,
-			r.gender, r.required_units, r.type_of_request, r.created_at, s.status, s.donor_id
+			.query(`SELECT r.id, requester_name, r.blood_group, r.hospital_name, r.gender, r.required_units,
+			r.type_of_request, r.created_at, s.status, s.donor_id, s.completed_date
                                         FROM blood_request r
                                         JOIN donor_status s
                                         ON r.id = s.blood_request_id

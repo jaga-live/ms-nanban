@@ -58,8 +58,8 @@ export class DonorService implements IDonorService {
 	}
 	
 	// push tokens by donor id
-	async get_donor_expo_push_tokens_by_id(id: number): Promise<any> {
-		return await this.donor.get_donor_expo_push_tokens_by_id(id);
+	async get_donor_expo_push_tokens_by_id(userId: number): Promise<any> {
+		return await this.donor.get_donor_expo_push_tokens_by_id(userId);
 	}
 
 

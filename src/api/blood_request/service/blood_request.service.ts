@@ -58,18 +58,8 @@ export class BloodRequestService implements IBloodRequestService {
 		// save donor request status
 		await this.donorStatusService.saveDonorStatus(donorStatus);
 
-		// Send push notification for donor
-		availableDonors.map(async (donor) => {
-			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.userId);
-			if (tokens?.length > 0) sendPushNotification(
-				tokens,
-				{
-					type: 'incoming_blood_request',
-					id: createBloodRequest.id
-				},
-				'You have a new Blood Request'
-			);
-		});
+		///Process Push Notification after response is written
+		this.triggerPushNotification(availableDonors, createBloodRequest.id);
 
 		/// Send OTP to user mobile
 		await this.smsService.send({
@@ -77,6 +67,7 @@ export class BloodRequestService implements IBloodRequestService {
 			type: SmsTypes.requesterOtp,
 			phone: createBloodRequest.mobile_number,
 		});
+
 
 		return { ...createBloodRequest, otp };
 	}
@@ -112,4 +103,49 @@ export class BloodRequestService implements IBloodRequestService {
 		donorDetails = await this.bloodRequestRepo.filter_blood_request_by_blood_group(getSuitableBloodGroup, pin);
 		return donorDetails;
 	}
+
+	///Check if donor eligible for donation
+	private async find_donor_notification_eligibility(donorId: number) {
+		///Find Donor
+		const donor = await this.donorService.viewDonor(donorId);
+		if (!donor) return null;
+
+		///Find Last Donation
+		const latestDonations: any[] = await this.donorStatusService.view_blood_request_by_action(donor.userId, 'DONATION_COMPLETE');
+		if (latestDonations.length === 0) return null;
+
+		const latestDonation = latestDonations.reverse()[0];
+
+		//Donor Frequency
+		const preferred_frequency: number = parseInt(donor.preferred_frequency);
+
+		const currentDate = new Date();
+		const last_donation_date = new Date(latestDonation.completed_date);
+		
+		const diff = currentDate.getTime() - last_donation_date.getTime();
+		const diffInMonths: number = Math.round(diff / 2629746000);
+
+		return diffInMonths >= preferred_frequency ? true : false;
+	}
+
+	private async triggerPushNotification(donors: any[], bloodRequestId: number) {
+		if (donors.length === 0) return;
+		
+		for (const donor of donors) {
+			const isDonorEligible = await this.find_donor_notification_eligibility(donor.id);
+			console.log('Eligible', isDonorEligible);
+			if (!isDonorEligible) continue;
+
+			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.userId);
+			if (tokens?.length > 0) sendPushNotification(
+				tokens,
+				{
+					type: 'incoming_blood_request',
+					id: bloodRequestId
+				},
+				'You have a new Blood Request'
+			);
+		}
+	}
+	
 }

@@ -60,7 +60,10 @@ export class DonorStatusService implements IDonorStatusService {
 
 	// view all blood requests
 	async view_blood_request_by_action(userId: number, status: string) {
-		return await this.donorStatusRepo.get_blood_request_by_status(userId, status);
+		const donor = await this.donorRepo.find_donor_by_userId(userId);
+		if (!donor) throw new HttpException('Donor Not found', 400);
+		
+		return await this.donorStatusRepo.get_blood_request_by_status(donor.id, status);
 	}
 
 	/// Update Donor Status
@@ -92,8 +95,8 @@ export class DonorStatusService implements IDonorStatusService {
 	
 	// confirm otp and complete workflow
 	async confirm_otp(blood_request_id: number, user_id: number, otp: string): Promise<any> {
-		const donor: Donor = await this.donorRepo.find_donor_by_id(user_id);
-		if (!donor) throw new HttpException('Donor Id not found', 400);
+		const donor: Donor = await this.donorRepo.find_donor_by_userId(user_id);
+		if (!donor) throw new HttpException('Donor not found', 400);
 		
 		const bloodReq = await this.donorStatusRepo.find_donor_status_by_donor_id(donor.id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
