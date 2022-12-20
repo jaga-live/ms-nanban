@@ -33,9 +33,10 @@ export class BloodRequestRepository {
 	}
 
 	// patch
-	async update_blood_request_by_id(id : number) {
+	async update_blood_request_by_id(id : number, payload: any) {
 		const bloodRequest = await this.repo.blood_request().findOneBy({ id });
-		if (!bloodRequest) throw new HttpException('Blood Request Not Found', 400);
+
+		await this.repo.blood_request().update({id}, {...payload});
 	}
 
 	// delete blood request by id

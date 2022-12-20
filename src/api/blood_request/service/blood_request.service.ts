@@ -14,7 +14,7 @@ export interface IBloodRequestService{
     createBloodRequest(payload: any): Promise<any>
     viewAllBloodRequests(): Promise<any>
     viewBloodRequestById(id : number): Promise<any>
-    editBloodRequestById(id: number): Promise<any>
+    editBloodRequestById(id: number, payload: any): Promise<any>
     deleteBloodRequestById(id : number): Promise<any>
 }
 @injectable()
@@ -85,8 +85,8 @@ export class BloodRequestService implements IBloodRequestService {
 	}
 
 	// edit blood request by id
-	async editBloodRequestById(id: number) {
-		const bloodRequest = await this.bloodRequestRepo.update_blood_request_by_id(id);
+	async editBloodRequestById(id: number, payload: any) {
+		const bloodRequest = await this.bloodRequestRepo.update_blood_request_by_id(id, payload);
 		return bloodRequest;
 	}
 

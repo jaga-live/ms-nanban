@@ -100,6 +100,8 @@ export class DonorStatusRepository {
 			.andWhere('blood_request_id = :blood_request_id', { blood_request_id })
 			.getOne();
 		
+		if(!donor_status) throw new HttpException('Bad Request', 400);
+		
 		// already verified
 		if (donor_status.otp_verified) throw new HttpException('OTP already verified', 401);
 

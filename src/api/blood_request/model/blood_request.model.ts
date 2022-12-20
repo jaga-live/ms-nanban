@@ -46,7 +46,14 @@ export class BloodRequest {
 
     @Column()
     	otp: string;
+    
     @Column()
     	created_at: Date;
+    
+    @Column({ default: 0 })
+    	units_received: number;
+
+    @Column({ default: false })
+    	units_limit_reached: boolean;
         
 }

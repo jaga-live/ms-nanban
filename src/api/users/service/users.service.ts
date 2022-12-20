@@ -65,7 +65,7 @@ export class UserService implements IUserService {
 		return user;
 	}
 
-	/// /View user by ID
+	/// /View user by Email
 	async viewUserByEmail(email: string) {
 		const user = await this.User.find_by_email(email);
 		return user;

@@ -6,6 +6,7 @@ import { generateCertificate } from '../../../helper/html-to-pdf-buffer';
 import { MailDto } from '../../../shared/mail/mail.dto';
 import { IMailService, MailService } from '../../../shared/mail/mail.service';
 import { sendPushNotification } from '../../../shared/push_notification';
+import { BloodRequestRepository } from '../../blood_request/repository/blood_request.repository';
 import { Donor } from '../../donor/model/donor.model';
 import { DonorRepository } from '../../donor/repository/donor.repository';
 import { DONOR_STATUS_TYPES } from '../enum/donor_status.enum';
@@ -29,6 +30,7 @@ export class DonorStatusService implements IDonorStatusService {
 	constructor(
         @inject(DonorStatusRepository) private readonly donorStatusRepo: DonorStatusRepository,
         @inject(DonorRepository) private readonly donorRepo: DonorRepository,
+        @inject(BloodRequestRepository) private readonly bloodRequestRepo: BloodRequestRepository,
         @inject(TYPES.MailService) private readonly mailService: MailService,
 	) {}
 
@@ -98,11 +100,22 @@ export class DonorStatusService implements IDonorStatusService {
 		const donor: Donor = await this.donorRepo.find_donor_by_userId(user_id);
 		if (!donor) throw new HttpException('Donor not found', 400);
 		
-		const bloodReq = await this.donorStatusRepo.find_donor_status_by_donor_id(donor.id);
+		const bloodReq = await this.bloodRequestRepo.find_blood_request_by_id(blood_request_id);
 		if (!bloodReq) throw new HttpException('Blood Request not found', 400);
 		
-		
+		///Update Donor Status
 		await this.donorStatusRepo.confirm_otp(blood_request_id, donor.id, otp);
+
+		///Update units
+		const updateUnits: number = bloodReq.units_received + 1;
+		let bloodReqUpdateParams = {};
+		if (updateUnits === bloodReq.required_units) {
+			bloodReqUpdateParams = { units_received: updateUnits, units_limit_reached: true };
+		} else {
+			bloodReqUpdateParams = { units_received: updateUnits };
+		}
+
+		await this.bloodRequestRepo.update_blood_request_by_id(blood_request_id, bloodReqUpdateParams);
 		return {
 			message: 'OTP Confirmed',
 		};
