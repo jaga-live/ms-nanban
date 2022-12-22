@@ -388,7 +388,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiNzNjMWNiMWQtZGRkMS00MWRmLWE2NzItZDRjZWVjNzVhZTg4IiwiaWF0IjoxNjcwNDA4ODQyfQ._J4Qj0b9Qnep71-mPupKuPEpgzWzr6Jx__5aKFbTcSM\",\r\n    \"provider\": \"google\",\r\n    \"expo_push_token\": \"token1\"\r\n}",
+							"raw": "{\r\n    \"token\": \"eyJhbGciOiJSUzI1NiIsImtpZCI6IjhjMjdkYjRkMTNmNTRlNjU3ZDI2NWI0NTExMDA4MGI0ODhlYjQzOGEiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiI4MzMzNDM0MzMyNDQtbzhtMjRsdTUwbmdkdnBzMDNkdGVlZWpoOTdlNWZoY3EuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiI4MzMzNDM0MzMyNDQtbzhtMjRsdTUwbmdkdnBzMDNkdGVlZWpoOTdlNWZoY3EuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDY0NDUzMDgxOTE5NDYzMDM3MDgiLCJlbWFpbCI6ImluZGVycGlsb3RAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5vbmNlIjoiYjliOTMzNTNiNGVkMWNlYWM2ZDhjN2E4YTc0NzRlZWUyZTgwODIyYTllMDhhYjdlOTZjZDIxMWYzYWI3MzA0OCIsIm5hbWUiOiJJbmRlciBBaml0aCIsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BRWRGVHA3Y3M0eWFnX3BueUtVbEFmd2ZjeTVHYjdLaXZIa2haVUVlVDk0YXNRPXM5Ni1jIiwiZ2l2ZW5fbmFtZSI6IkluZGVyIiwiZmFtaWx5X25hbWUiOiJBaml0aCIsImxvY2FsZSI6ImVuIiwiaWF0IjoxNjcxMDkyNDk4LCJleHAiOjE2NzEwOTYwOTgsImp0aSI6ImIxNTZiOTIzMjhiOWI3M2I3YTZkM2Q0NWUxM2UyZmY1MWE2ZDk5MjUifQ.VUuo1VrQhVyqGtldm78h2hr6gWRu38iaNyWb-35KzW7vT-ebIfzl7Yd9g_hFkEWF66nocxQLFYZWhQKJGDpwK-clWRLN-kHKeAmfO3wxV0W6cuPoPUttUOyI8RzZDfEVuKaU5fGZighYyfpFrOdpP8HjA-98I7VuFoOAEFnR8pCM_N8pb5pVBzxe208cFIr3cQB8tm_oo68P-8vkfnQZVDevkMudiDsB4wUDRi0fcgstPAu46BFrB5kbNcX8wOXIIq7YMMLFaXfuRENIgvkS4panNuNNnME96dVSqqSamOkUMt9g6_3lbHz0uTQMZunYWJDdnJDQjB4pJrsrbkTCsg\",\r\n    \"provider\": \"google\",\r\n    \"expo_push_token\": \"ExponentPushToken[D4ci3gKpRhPvwqJomUGNB1]\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -396,12 +396,9 @@
 							}
 						},
 						"url": {
-							"raw": "https://ms-nanban.jagalive.in/auth/social",
-							"protocol": "https",
+							"raw": "{{URL}}/auth/social",
 							"host": [
-								"ms-nanban",
-								"jagalive",
-								"in"
+								"{{URL}}"
 							],
 							"path": [
 								"auth",
@@ -1051,7 +1048,7 @@
 									"variable": [
 										{
 											"key": "status",
-											"value": "ACCEPTED"
+											"value": "REQUESTED"
 										}
 									]
 								}
@@ -1065,7 +1062,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"blood_request_id\": 17\r\n}",
+									"raw": "{\r\n    \"blood_request_id\": 63\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1086,8 +1083,37 @@
 									"variable": [
 										{
 											"key": "status",
-											"value": "REJECTED"
+											"value": "ACCEPTED"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Complete Blood Donation",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"blood_req_id\": 106,\r\n    \"otp\": \"984746\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{URL}}/donor/blood_request/flow/complete",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"donor",
+										"blood_request",
+										"flow",
+										"complete"
 									]
 								}
 							},
@@ -1128,7 +1154,69 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImRvbm9yIiwic2Vzc2lvbklkIjoiZTAwODRkNjktMDk1Yy00ODc3LTllOGQtNTZhOTIzMjcxOWQ0IiwiaWF0IjoxNjcwOTE0MzI5fQ.sPWfoS-plsbmTIrYesr3BRw00MZjGZqtdgxU9KdODTo",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIzLCJlbWFpbCI6ImphZ2FkaGVlc2g2QGdtYWlsLmNvbSIsInJvbGUiOiJkb25vciIsInNlc3Npb25JZCI6IjUzOWIyYTg4LTlhNjItNDJiMy1hNWI2LTg5M2QyZjAyZjIxYSIsImlhdCI6MTY3MTY5MTk4NX0.nKqYq-GFpY2eMqTKJMcmaLaK8lo0Lfrq1sfQMwoeX8Y",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Blood",
+			"item": [
+				{
+					"name": "Add Blood",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"blood_mapping\": {\r\n\r\n    \"A+\": [\"A+\"],\r\n    \"A-\": [\"A+\"],\r\n    \"B+\": [\"A+\"],\r\n    \"B-\": [\"A+\"],\r\n    \"AB+\": [\"A+\"],\r\n    \"AB-\": [\"A+\"],\r\n    \"O+\": [\"A+\"],\r\n    \"O-\": [\"A+\"]\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/blood/mapping_blood_type",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood",
+								"mapping_blood_type"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6ImI2YjMyYWZlLTA4NGUtNDAyZC05ZWNmLWIzMDdiNzRhODdhMCIsImlhdCI6MTY3MTE2NjE0NH0.tblnFCz4wtlUt2OvFqJ7vNSz0PtomxofzzeWXSgnmJY",
 						"type": "string"
 					}
 				]
@@ -1164,7 +1252,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"type_of_request\": \"routine\",\r\n  \"blood_group\": \"A+\",\r\n  \"required_units\": 1,\r\n  \"requester_name\": \"John\",\r\n  \"gender\": \"Male\",\r\n  \"mobile_number\": 919994959031,\r\n  \"hospital_name\": \"KMCH\",\r\n  \"address_line_1\": \"Address 1\",\r\n  \"address_line_2\": \"Address 2\",\r\n  \"pin\": 123456,\r\n  \"state\": \"CT\",\r\n  \"city\": \"Baloda Bazar\",\r\n  \"place\": \"Magna consequuntur i\"\r\n}",
+							"raw": "{\r\n  \"type_of_request\": \"routine\",\r\n  \"blood_group\": \"A+\",\r\n  \"required_units\": 2,\r\n  \"requester_name\": \"Ballu\",\r\n  \"gender\": \"Male\",\r\n  \"mobile_number\": 919994959031,\r\n  \"hospital_name\": \"KMCH\",\r\n  \"address_line_1\": \"Address 1\",\r\n  \"address_line_2\": \"Address 2\",\r\n  \"pin\": 637208,\r\n  \"state\": \"CT\",\r\n  \"city\": \"Baloda Bazar\",\r\n  \"place\": \"Magna consequuntur i\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1329,7 +1417,7 @@
 							"variable": [
 								{
 									"key": "requestId",
-									"value": "2"
+									"value": "16"
 								}
 							]
 						}
@@ -1528,6 +1616,31 @@
 					"response": []
 				},
 				{
+					"name": "View Hospital By Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/hospital/status/:status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"hospital",
+								"status",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "status",
+									"value": "APPROVED"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "View Single Hospital",
 					"request": {
 						"method": "GET",
@@ -1558,7 +1671,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"nyxnoot hospitals, mumbai\"\r\n}",
+							"raw": "{\r\n   \"approvalStatus\": \"REJECTED\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1577,7 +1690,7 @@
 							"variable": [
 								{
 									"key": "hospitalId",
-									"value": "2"
+									"value": "8"
 								}
 							]
 						}
@@ -1614,7 +1727,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjMsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6IjdlMDExMDZkLTRiMjgtNDFhOC1iMzExLTkwYjIxMWM4NDczYSIsImlhdCI6MTY2NzIwNTE2N30.pzGpJIcFiXPUudOjF3MQOg33uC7-TMKhSkYsx1WwtmY",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6ImYxZWZlYmJiLWE0N2QtNDk2ZS04N2ZiLTVjYjE0MDkxMTdkNiIsImlhdCI6MTY3MTAxMzE3MX0.8y1Zu2lwkiNpycY42vD8OXdqqxs-oSP_gS4SDYpyyyY",
 						"type": "string"
 					}
 				]
@@ -1672,16 +1785,44 @@
 			]
 		},
 		{
-			"name": "Blood",
+			"name": "Blood Bank",
 			"item": [
 				{
-					"name": "Add Blood",
+					"name": "Register Blood Bank",
 					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/blood_bank/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood_bank",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Blood Bank",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6ImYxZWZlYmJiLWE0N2QtNDk2ZS04N2ZiLTVjYjE0MDkxMTdkNiIsImlhdCI6MTY3MTAxMzE3MX0.8y1Zu2lwkiNpycY42vD8OXdqqxs-oSP_gS4SDYpyyyY",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"blood_mapping\": {\r\n\r\n    \"A-\": [\"A+\"]\r\n    }\r\n}",
+							"raw": "{\r\n    \"approvalStatus\": \"ACCEPTED\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1689,13 +1830,44 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/blood/mapping_blood_type",
+							"raw": "{{URL}}/blood_bank/:bloodBankId",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"blood",
-								"mapping_blood_type"
+								"blood_bank",
+								":bloodBankId"
+							],
+							"variable": [
+								{
+									"key": "bloodBankId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View Blood Bank By Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/blood_bank/status/:status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood_bank",
+								"status",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "status",
+									"value": "ACCEPTED"
+								}
 							]
 						}
 					},
@@ -1707,7 +1879,7 @@
 				"bearer": [
 					{
 						"key": "token",
-						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImVtYWlsIjoiamFnYWRoZWVzaDZAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwic2Vzc2lvbklkIjoiNjYwMjZhZjItNTA1Ni00NWY2LTk0NDgtNTZiMzFmZjI1ZTgzIiwiaWF0IjoxNjcwNjg1MzI5fQ.TuDGSnQXRFUD7hA2ANdipcz0bnDpUfQ-R9wDaK0WdkA",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6ImYxZWZlYmJiLWE0N2QtNDk2ZS04N2ZiLTVjYjE0MDkxMTdkNiIsImlhdCI6MTY3MTAxMzE3MX0.8y1Zu2lwkiNpycY42vD8OXdqqxs-oSP_gS4SDYpyyyY",
 						"type": "string"
 					}
 				]
@@ -1734,25 +1906,95 @@
 			]
 		},
 		{
-			"name": "Blood Bank",
+			"name": "Blood Camp",
 			"item": [
 				{
-					"name": "Register Blood Bank",
+					"name": "Update Blood Camp",
 					"request": {
-						"method": "POST",
+						"method": "PATCH",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"approvalStatus\": \"ACCEPTED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{URL}}/blood_bank/register",
+							"raw": "{{URL}}/blood_donation_camp/:bloodCampId",
 							"host": [
 								"{{URL}}"
 							],
 							"path": [
-								"blood_bank",
-								"register"
+								"blood_donation_camp",
+								":bloodCampId"
+							],
+							"variable": [
+								{
+									"key": "bloodCampId",
+									"value": "1"
+								}
 							]
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "View Blood Camp by Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/blood_donation_camp/status/:status",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"blood_donation_camp",
+								"status",
+								":status"
+							],
+							"variable": [
+								{
+									"key": "status",
+									"value": "ACCEPTED"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsImVtYWlsIjoiamFnYWRoZWVzaC5tdXJ1Z2VzYW5Ac3NlbnNlLmNvbSIsInJvbGUiOiJhZG1pbiIsInNlc3Npb25JZCI6ImYxZWZlYmJiLWE0N2QtNDk2ZS04N2ZiLTVjYjE0MDkxMTdkNiIsImlhdCI6MTY3MTAxMzE3MX0.8y1Zu2lwkiNpycY42vD8OXdqqxs-oSP_gS4SDYpyyyY",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		}
