@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:16
 WORKDIR /usr/src/ms-nanban
 COPY package.json .
 RUN npm install -g typescript cpx
