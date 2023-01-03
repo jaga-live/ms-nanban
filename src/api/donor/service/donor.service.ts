@@ -1,9 +1,12 @@
 import { inject, injectable } from 'inversify';
 import { HttpException } from '../../../core/exception';
+import { container } from '../../../core/inversify/inversify.config';
 import { TYPES } from '../../../core/inversify/types';
+import { BloodRequestService } from '../../blood_request/service/blood_request.service';
 import { UserService } from '../../users/service/users.service';
 import { DonorRepository } from '../repository/donor.repository';
 import { CreateDonorDto } from '../_dto/donor.dto';
+import { DonorProfile } from '../_dto/donor_profile.dto';
 
 export interface IDonorService{
     createDonor(userId: number, payload: CreateDonorDto): Promise<any>
@@ -39,6 +42,25 @@ export class DonorService implements IDonorService {
 	}
 
 	////GET
+	///Donro profile
+	async profile(userId: number) {
+		const user = await this.userService.viewUser(userId);
+		const donor = await this.donor.find_donor_by_userId(userId);
+
+		///Check donor donation eligibility
+		const bloodRequestService = container.get<BloodRequestService>(TYPES.BloodRequestService);
+		const getDonationEligibility = await bloodRequestService.find_donor_notification_eligibility(donor.id);
+
+		const donorProfile = new DonorProfile(
+			user.id,
+			donor.full_name,
+			donor.email,
+			'donor',
+			user.donor_registered,
+			getDonationEligibility || false,
+		);
+		return donorProfile;
+	}
 	// view all donor
 	async viewDonors() {
 		const donors = await this.donor.find_all_donor();

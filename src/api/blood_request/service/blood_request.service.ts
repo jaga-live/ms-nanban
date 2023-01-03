@@ -38,7 +38,7 @@ export class BloodRequestService implements IBloodRequestService {
 
 		/// Nearby donors
 		let availableDonors: BloodRequestFilterResponse[] | any = [];
-		console.log(createBloodRequest.pin, createBloodRequest.blood_group)
+		console.log(createBloodRequest.pin, createBloodRequest.blood_group);
 		availableDonors = await this.filter_blood_request(createBloodRequest.pin, createBloodRequest.blood_group);
 		if (availableDonors.length === 0) {
 			availableDonors = await this.donorService.viewDonors();
@@ -107,7 +107,7 @@ export class BloodRequestService implements IBloodRequestService {
 	}
 
 	///Check if donor eligible for donation
-	private async find_donor_notification_eligibility(donorId: number) {
+	async find_donor_notification_eligibility(donorId: number) {
 		///Find Donor
 		const donor = await this.donorService.viewDonor(donorId);
 		if (!donor) return null;
@@ -135,7 +135,7 @@ export class BloodRequestService implements IBloodRequestService {
 		
 		for (const donor of donors) {
 			const isDonorEligible = await this.find_donor_notification_eligibility(donor.id);
-			console.log(donor.id, isDonorEligible, 'Notification Eligibility')
+			console.log(donor.id, isDonorEligible, 'Notification Eligibility');
 			if (!isDonorEligible) continue;
 
 			const tokens: PushToken[] = await this.donorService.get_donor_expo_push_tokens_by_id(donor.userId);

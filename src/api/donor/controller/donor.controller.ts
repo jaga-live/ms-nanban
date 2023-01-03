@@ -33,12 +33,22 @@ export class DonorController {
 		return this.donorService.createDonor(userId, payload);
 	}
 
+	///Donor Profile
+	@httpGet(
+		'/profile',
+		TYPES.AuthGuard,
+		RolesGuard([ROLES.DONOR]))
+    async donorProfile(req: Req) {
+    	const { userId } = req.userData;
+    	return await this.donorService.profile(userId);
+    }
+
     /// Edit Donor
     @httpPatch('', upload.single('image'))
-    async editDonor(req: Req) {
+	async editDonor(req: Req) {
     	console.log(req.file);
     	return 'Hello';
-    }
+	}
 
     // confirm otp and complete flow
     @httpPost(
